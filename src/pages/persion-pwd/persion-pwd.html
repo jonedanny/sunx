@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{'修改个人密码' | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<ion-label color="primary" stacked>{{'验证方式' | translate}}</ion-label>
+			<ion-select [(ngModel)]="checkWays" okText="{{'确定' | translate}}" cancelText="{{'取消' | translate}}" (ionChange)="changeCheckWays()">
+				<ion-option value="old">{{'通过密码修改' | translate}}</ion-option>
+				<ion-option *ngFor="let item of ways" [value]="item.type">{{(item.type==0?'邮箱':'手机') | translate}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="checkWays == 1">
+			<ion-label color="primary" stacked>{{'验证手机' | translate}}</ion-label>
+			<ion-input type="tel" [(ngModel)]="value" placeholder="{{'请输入验证手机' | translate}}" maxlength="11" disabled="true"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="checkWays == 0">
+			<ion-label color="primary" stacked>{{'验证邮箱' | translate}}</ion-label>
+			<ion-input type="email" [(ngModel)]="value" placeholder="{{'请输入验证邮箱' | translate}}" disabled="true"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="checkWays == 'old'">
+			<ion-label color="primary" stacked>{{'旧密码' | translate}}</ion-label>
+			<ion-input type="password" [(ngModel)]="oldPwd" placeholder="{{'请输入登录密码' | translate}}"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="checkWays != 'old'">
+			<ion-input type="text" [(ngModel)]="checkCode" placeholder="{{'请输入验证码' | translate}}" autocomplete="new-password"></ion-input>
+			<a ion-button small item-end (tap)="getCheckCode()">{{postCodeText | translate}}</a>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>{{'新密码' | translate}}</ion-label>
+			<ion-input type="password" [(ngModel)]="newPwd" placeholder="{{'请输入8-16位数字和字母' | translate}}" autocomplete="new-password"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>{{'确认密码' | translate}}</ion-label>
+			<ion-input type="password" [(ngModel)]="repeatPwd" placeholder="{{'请确认密码' | translate}}" autocomplete="new-password"></ion-input>
+		</ion-item>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<button ion-button block full class="button" (click)="changePwd()">{{'提交' | translate}}</button>
+</ion-footer>

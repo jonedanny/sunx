@@ -1,0 +1,50 @@
+page-sltp-block {
+	ion-header {
+		background-color: #488aff;
+		color: #fff;
+		ion-icon {
+			color: #fff;
+		}
+	}
+	.list .item-block .input-wrapper:first-child {
+		border-top: 0;
+	}
+	.list .item-block .input-wrapper {
+		border-top: 1px solid #252f39;
+	}
+	ion-card-content {
+		line-height: 1.5rem!important;
+		text-align: left;
+		p {
+			text-align: left;
+			font-size: 1.2rem!important;
+			color: #333!important;
+			padding: 3px 0;
+		}
+	}
+	.card-title {
+		font-size: 1.5rem;
+		color: #999;
+		padding: 0;
+	}
+	.card {
+		background: #f8f8f8;
+	}
+	.sltp-block {
+		i.fa {
+			width: 25px;
+			text-align: center;
+			font-size: 24px;
+			color: #488aff;
+		}
+		.sltp-price {
+			height: 20px;
+			line-height: 18px;
+			font-size: 20px;
+			padding: 0 10px;
+		}
+	}
+}
+ion-footer .button {
+	margin: 0px!important;
+}

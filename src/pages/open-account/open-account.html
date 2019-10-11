@@ -1,0 +1,13 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'实名信息' | translate}}</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<iframe [src]="domesticUrl"></iframe>
+</ion-content>

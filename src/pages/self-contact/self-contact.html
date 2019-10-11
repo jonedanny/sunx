@@ -1,0 +1,66 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>
+			<ion-segment [(ngModel)]="currentCommodityType" (ionChange)="getLocalSelfContractData()">
+				<ion-segment-button [value]="0" *ngIf="configFavoritesNav.futures.show">
+					{{configFavoritesNav.futures.name | translate}}
+				</ion-segment-button>
+				<ion-segment-button [value]="4" *ngIf="configFavoritesNav.cfd.show">
+					{{configFavoritesNav.cfd.name | translate}}
+				</ion-segment-button>
+			</ion-segment>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<div class="market-title" *ngIf="currentCommodityType != 4">
+		<span class="w46p t-l">{{'合约名称' | translate}}</span>
+		<span class="w27p t-r">{{'最新价' | translate}}</span>
+		<span class="w27p t-l">{{'涨跌幅' | translate}}</span>
+	</div>
+	<div class="market-title" *ngIf="currentCommodityType == 4">
+		<span class="w46p t-l">{{'合约名称' | translate}}</span>
+		<span class="w27p t-l">{{'卖价' | translate}}</span>
+		<span class="w27p t-l">{{'买价' | translate}}</span>
+	</div>
+	<div class="out-con" (scroll)="dataScroll()">
+		<div *ngFor="let item of selfContractList"  (tap)="toProDetail(item)" class="trader-resource-list data" [ngClass]="{'c_red':item.color == 'red' && currentCommodityType !== 4,'c_green':item.color == 'green' && currentCommodityType !== 4,'ischange1':item.oldPriceChange == 1,'ischange2':item.oldPriceChange == 2}">
+			<!-- 普通合约 -->
+			<div class="w46p" *ngIf="currentCommodityType !== 4">
+				<p><span class="c_333 t-l">{{item.productName}}</span></p>
+				<p><span class="c_999 f12 t-l">{{item.productCode}}</span></p>
+			</div>
+			<div class="w27p" *ngIf="currentCommodityType !== 4">
+				<p>
+					<span class="t-r">
+						{{item.QChangeRate == 0 && item.QLastPrice == 0?'--':item.QLastPrice}}
+						<i *ngIf="item.color == 'red'" class="fa fa-arrow-up arrow"></i>
+						<i *ngIf="item.color == 'green'" class="fa fa-arrow-down arrow"></i>
+					</span>
+				</p>
+			</div>
+			<div class="w27p QChangeRate" *ngIf="currentCommodityType !== 4">
+				<p>
+					<span class="t-c" [ngClass]="{'red':item.color == 'red','green':item.color == 'green'}">{{item.QChangeRate == 0 && item.QLastPrice == 0?'--':item.QChangeRate}}%</span>
+				</p>
+			</div>
+			<!-- 点差合约 -->
+			<div class="w46p cfd" *ngIf="currentCommodityType === 4">
+				<p><span class="c_333 t-l">{{item.productName}}</span></p>
+				<!-- <p><span class="c_999 f12 t-l">{{'点差' | translate}}: {{item.QLowPrice == 0 && item.QHighPrice == 0?'--':item.cfd}}</span></p> -->
+				<p><span class="c_999 f12 t-l">最新价: {{item.QChangeRate == 0 && item.QLastPrice == 0?'--':item.QLastPrice}}</span></p>
+			</div>
+			<div class="w27p cfd" *ngIf="currentCommodityType === 4">
+				<p><span class="t-l c_blue">{{item.QAskPrice}}</span></p>
+				<p><span class="t-l f12">{{'最低' | translate}}: {{item.QLowPrice == 0 && item.QHighPrice == 0?'--':item.QLowPrice}}</span></p>
+			</div>
+			<div class="w27p cfd" *ngIf="currentCommodityType === 4">
+				<p><span class="t-l c_blue">{{item.QBidPrice}}</span></p>
+				<p><span class="t-l f12">{{'最高' | translate}}: {{item.QLowPrice == 0 && item.QHighPrice == 0?'--':item.QHighPrice}}</span></p>
+			</div>
+		</div>
+	</div>
+</ion-content>

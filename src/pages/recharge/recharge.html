@@ -1,0 +1,78 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>充 值</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<iframe *ngIf="isWeb" [src]="CreditRuleUrl"></iframe>
+	<ion-list *ngIf="!isWeb">
+		<!-- 目标充值金额 = 源币种买入汇率 * 源币种金额 / 目标币种卖出汇率 -->
+		<ion-item>
+			<ion-label color="primary" stacked>充值通道</ion-label>
+			<ion-select cancelText="取消" okText="确定" [(ngModel)]="rechargeChoose" (ngModelChange)="getOutPutWays()">
+				<ion-option value="">请选择</ion-option>
+				<ion-option *ngFor="let item of rechargeWays" [value]="item.bankMerchantId">{{item.channelName}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="hasWays">
+			<ion-label color="primary" stacked>支付方式</ion-label>
+			<ion-select cancelText="取消" okText="确定" [(ngModel)]="payWays" (ngModelChange)="getBankList()">
+				<ion-option [value]="-1">请选择支付方式</ion-option>
+				<ion-option *ngFor="let item of outputWays" [value]="item.id">{{item.name}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="hasBank">
+			<ion-label color="primary" stacked>银行列表</ion-label>
+			<ion-select cancelText="取消" okText="确定" [(ngModel)]="bankChoose">
+				<ion-option value="">请选择</ion-option>
+				<ion-option *ngFor="let item of bankList" [value]="item.bankCode">{{item.bankName}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>充值金额({{sourceCurrencyName}})</ion-label>
+			<ion-input type="text" placeholder="请输入充值金额" maxlength="16" [(ngModel)]="originCash" (ngModelChange)="calcExchangeOriginToTarget()" [readonly]="config.rechargeInner === 'origin' && rechargeChoose !== '' ? false : true" [ngClass]="{'readonly':config.rechargeInner === 'origin' && rechargeChoose !== '' ? false : true}"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>支付金额( <span class="c_yellow">{{targetCurrencyName}}</span> )</ion-label>
+			<ion-input type="text"  placeholder="请输入支付金额" [(ngModel)]="targetCash" maxlength="16" (ngModelChange)="calcExchangeTargetToOrigin()" [readonly]="config.rechargeInner === 'target' && rechargeChoose !== '' ? false : true" [ngClass]="{'readonly':config.rechargeInner === 'target' && rechargeChoose !== '' ? false : true}"></ion-input>
+		</ion-item>
+	</ion-list>
+	<div id="recharge-info" *ngIf="rechargeInfo && !isWeb">
+		<div class="con">
+			<table>
+				<tr>
+					<td width="50%" align="right">充值通道:</td>
+					<td width="50%" align="left">{{getWanysName(rechargeChoose)}}</td>
+				</tr>
+				<tr *ngIf="hasBank">
+					<td align="right">银行:</td>
+					<td align="left">{{getBankName(bankChoose)}}</td>
+				</tr>
+				<tr>
+					<td align="right">充值金额({{sourceCurrencyName}}):</td>
+					<td align="left">{{originCash}}</td>
+				</tr>
+				<tr>
+					<td align="right">支付金额({{targetCurrencyName}})</td>
+					<td align="left">{{targetCash}}</td>
+				</tr>
+				<tr *ngIf="hasWays">
+					<td align="right">支付方式:</td>
+					<td align="left">{{getWaysName(payWays)}}</td>
+				</tr>
+				<tr>
+					<td><a ion-button small full color="light" (tap)="rechargeInfo=false">取 消</a></td>
+					<td><a id="window-open" (tap)="openUrl()" ion-button small full target="_blank">确 认</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</ion-content>
+<ion-footer [hidden]="rechargeInfo"  *ngIf="!isWeb">
+	<button ion-button full (tap)="toRecharge()">充 值</button>
+</ion-footer>

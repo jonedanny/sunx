@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'持仓明细' | translate}}</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list *ngFor="let items of positionDetailList">
+		<ion-card *ngFor="let item of items.content" (tap)="getChoosePostionInfo(item);presentActionSheet();">
+			<ion-card-content>
+				<ion-grid>
+					<ion-row>
+						<ion-col col-6>
+							{{'合约' | translate}}: <b [ngClass]="{'red':item[9] == 1,'green':item[9] == -1}">{{item[9] == 1?'B':'S'}}</b>
+							<span>{{item[2] | slice:0:10}}</span>
+						</ion-col>
+						<ion-col col-6>{{'合约代码' | translate}}: <span>{{item[3] | slice:0:12}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'持仓量' | translate}}: <span class="c_yellow">{{item[12]}}</span></ion-col>
+						<ion-col col-6>{{'计算价' | translate}}: <span class="c_yellow">{{item[15] | number:'1.0-4'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'持仓均价' | translate}}: <span [ngClass]="{'c_red':item[4] > 0,'c_green':item[4] < 0}">{{item[11] | number:'1.0-4'}}</span></ion-col>
+						<!-- <ion-col col-6>{{'预计仓息' | translate}}: <span>{{item[5] | number:'1.0-4'}}</span></ion-col> -->
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'保证金' | translate}}: <span>{{item[6]}}</span></ion-col>
+						<ion-col col-6>{{'持仓浮盈' | translate}}: <span [ngClass]="{'c_red':item[4] > 0,'c_green':item[4] < 0}">{{item[4] | number:'1.0-4'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'止盈' | translate}}: <span>{{item[16]==0?'-':item[16] | number:'1.0-4'}}</span></ion-col>
+						<ion-col col-6>{{'止损' | translate}}: <span>{{item[14]==0?'-':item[14] | number:'1.0-4'}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<app-alert></app-alert>
+</ion-content>

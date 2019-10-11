@@ -1,0 +1,246 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{productName}} {{productCode}}</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content class="trader-con">
+	<ion-list>
+		<ion-grid class="realtiem-column">
+			<ion-row class="new-contract-data">
+				<ion-col col-6><span *ngIf="commodityType !== 4 && commodityType !== -1" class="gray" [ngClass]="{'red':contractData.QChangeValue > 0,'green':contractData.QChangeValue < 0}">{{'计算价' | translate}}: {{contractData.QLastPrice | number:'1.2-6'}}</span></ion-col>
+				<ion-col col-6>{{contractData.DateTimeStamp}}</ion-col>
+			</ion-row>
+			<ion-row class="b-s-title">
+				<ion-col col-6><span class="fl">{{'买盘' | translate}}</span></ion-col>
+				<ion-col col-6><span class="fl">{{'卖盘' | translate}}</span></ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col col-12 class="p0">
+					<div class="process-bar flex flex-between">
+						<em class="b" [ngStyle]="{'width':bP+'%'}"></em>
+						<em class="s" [ngStyle]="{'width':sP+'%'}"></em>
+					</div>
+				</ion-col>
+			</ion-row>
+			<ion-row class="b-s-num">
+				<ion-col col-6>
+					<p class="flex flex-between">
+						<span>{{contractData.QBidPrice[0] | number:'1.2-6'}}</span>
+						<span>{{contractData.QBidQty[0]}}</span>
+					</p>
+				</ion-col>
+				<ion-col col-6>
+					<p class="flex flex-between">
+						<span>{{contractData.QAskPrice[0] | number:'1.2-6'}}</span>
+						<span>{{contractData.QAskQty[0]}}</span>
+					</p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<ion-card>
+			<ion-card-header class="flex flex-between"  (tap)="viewPosition = !viewPosition">
+				<span>{{'持仓合计' | translate}} <a class="tip">{{publishPositionTotal.length}}</a></span>
+				<a><i class="fa" [ngClass]="{'fa-arrow-circle-down':viewPosition,'fa-arrow-circle-up':!viewPosition}"></i></a>
+			</ion-card-header>
+			<ion-card-content *ngFor="let item of publishPositionTotal" [ngClass]="{'hide':!viewPosition}" (tap)="pushValue(item);positionActionSheet();">
+				<ion-grid>
+					<ion-row>
+						<ion-col col-12>
+							{{'合约名称' | translate}}: &nbsp;
+							<b [ngClass]="{'red':item.direct == 1,'green':item.direct == -1}">{{item.direct == 1?'B':'A'}}</b>
+							<span>{{item.commodityName}} {{item.contractCode}}</span>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'计算价' | translate}}: <span class="c_yellow">{{item.toNewPrice}}</span></ion-col>
+						<ion-col col-6>{{'持仓均价' | translate}}: <span>{{item.positionPrice | number:'1.0-2'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<!-- <ion-col col-6>{{'预计仓息' | translate}}: <span>{{item.interest | number:'1.0-2'}}</span></ion-col> -->
+						<ion-col col-6>{{'保证金' | translate}}: <span>{{item.keepDeposit | number:'1.0-2'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'持仓量' | translate}}: <span>{{item.positionVolume}}</span></ion-col>
+						<ion-col col-6>{{'持仓浮盈' | translate}}: <span [ngClass]="{'c_red':item.tradeProfit>0,'c_green':item.tradeProfit<0}">{{item.tradeProfit | number:'1.0-2'}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+		<ion-card>
+			<ion-card-header class="flex flex-between" (tap)="viewUntrader = !viewUntrader">
+				<span>{{'挂单' | translate}} <a class="tip">{{untraderTotalElements}}</a></span>
+				<span>
+					<a><i class="fa" [ngClass]="{'fa-arrow-circle-down':viewUntrader,'fa-arrow-circle-up':!viewUntrader}"></i></a>
+				</span>
+			</ion-card-header>
+			<ion-card-content *ngFor="let item of untraderList" [ngClass]="{'hide':!viewUntrader}" (tap)="removeUntraderInfo = item;removeUntraderActionSheet()">
+				<ion-grid>
+					<ion-row>
+						<ion-col col-12>{{'委托单号' | translate}}: <span>{{item.localOrderNo}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-12>
+							{{'合约名称' | translate}}: &nbsp;
+							<b [ngClass]="{'red':item.orderDirect == 1,'green':item.orderDirect == -1}">{{item.orderDirect == 1?'B':'A'}}</b>
+							<span>{{item.productName}} {{item.productCode}}</span>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'委托价格' | translate}}: <span>{{item.orderPrice | number:'1.2-6'}}</span></ion-col>
+						<ion-col col-6>{{'委托开平' | translate}}: <span>{{(orderOffsetText(item.offset)) | translate}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'委托数量' | translate}}: <span>{{item.orderVolume}}</span></ion-col>
+						<ion-col col-6>{{'委托状态' | translate}}: <span>{{(orderStateText(item.orderState)) | translate}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-12>{{'委托时间' | translate}}: <span>{{item.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<div class="confirm-con" *ngIf="showTraderConfirm">
+		<div class="masker"></div>
+		<div class="content">
+			<h3>{{'交易提示' | translate}}</h3>
+			<div class="info">
+				<table>
+					<tr>
+						<td width="100" align="right">{{'合约名称' | translate}}:</td>
+						<td align="left"><span>{{productName}} {{productCode}}</span></td>
+					</tr>
+					<tr>
+						<td align="right">{{'价格' | translate}}:</td>
+						<td align="left"><span>{{confirmPrice}}</span></td>
+					</tr>
+					<tr>
+						<td align="right">{{'数量' | translate}}:</td>
+						<td align="left"><span>{{confirmHandel}}</span></td>
+					</tr>
+					<tr>
+						<td align="right">{{'方向' | translate}}:</td>
+						<td align="left"><span>{{confirmBS | translate}}</span></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2">
+							<p class="c_red">{{traderTips}}</p>
+							<p>{{'确认要交易此合约' | translate}}?</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2">
+							<button ion-button tappable small class="yellow" (click)="confirmTrader()">{{'确定' | translate}}</button>
+							<button ion-button tappable small class="grey" (click)="showTraderConfirm = false">{{'取消' | translate}}</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<ion-grid class="trader common-price">
+		<ion-row>
+			<ion-col col-12>
+				<capital></capital>
+			</ion-col>
+		</ion-row>
+		<ion-row class='f-line'>
+			<ion-col col-2 class="word">{{'数量' | translate}}:</ion-col>
+			<ion-col col-5 class="hands">
+				<a tappable
+				(tap)="changeMarketNum(0)"
+				(press)="changeMarketNumPress(0);"
+				(pressup)="changeMarketNumEnd()"
+				(panend)="changeMarketNumEnd();"
+				(swipeup)="changeMarketNumEnd();"
+				(pancancel)="changeMarketNumEnd();"
+				(pandown)="changeMarketNumEnd();"
+				(panmove)="changeMarketNumEnd();"
+				(touchend)="changeMarketNumEnd();"
+				>
+					<b class="fa fa-minus"></b>
+				</a>
+				<span><input type="number" [(ngModel)]="marketPriceNum" step="{{minOrderVol}}" (blur)="manualChangeNum()" /></span>
+				<a tappable
+				(tap)="changeMarketNum(1)"
+				(press)="changeMarketNumPress(1);"
+				(pressup)="changeMarketNumEnd()"
+				(panend)="changeMarketNumEnd();"
+				(swipeup)="changeMarketNumEnd();"
+				(pancancel)="changeMarketNumEnd();"
+				(pandown)="changeMarketNumEnd();"
+				(panmove)="changeMarketNumEnd();"
+				(touchend)="changeMarketNumEnd();"
+				>
+					<b class="fa fa-plus"></b>
+				</a>
+			</ion-col>
+			<ion-col col-5 class="small-btn">
+				<a [ngClass]="{'active':orderType == 0}" (click)="orderType=0">{{'自动' | translate}}</a>
+				<a [ngClass]="{'active':orderType == 1}" (click)="orderType=1">{{'开仓' | translate}}</a>
+				<a [ngClass]="{'active':orderType == 2}" (click)="orderType=2">{{'平仓' | translate}}</a>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-2 class="word">{{'价格' | translate}}:</ion-col>
+			<ion-col col-5 class="hands">
+				<div class="undeit" *ngIf="currentPriceCondition == 1"></div>
+				<a tappable
+				(tap)="changeDW(0);"
+				(press)="changeDWpress(0);"
+				(pressup)="changeDWtouchend();"
+				(panend)="changeDWtouchend();"
+				(swipeup)="changeDWtouchend();"
+				(pancancel)="changeDWtouchend();"
+				(pandown)="changeDWtouchend();"
+				(panmove)="changeDWtouchend();"
+				(touchend)="changeDWtouchend();"
+				>
+					<b class="fa fa-minus"></b>
+				</a>
+				<span>
+					<b *ngIf="currentPriceCondition != 0">--</b>
+					<input *ngIf="currentPriceCondition == 0" type="number" [(ngModel)]="limitPrice" (keyup)="manualChangePrice()" />
+				</span>
+				<a tappable
+				(tap)="changeDW(1);"
+				(press)="changeDWpress(1);"
+				(pressup)="changeDWtouchend();"
+				(panend)="changeDWtouchend();"
+				(swipeup)="changeDWtouchend();"
+				(pancancel)="changeDWtouchend();"
+				(pandown)="changeDWtouchend();"
+				(panmove)="changeDWtouchend();"
+				(touchend)="changeDWtouchend();"
+				>
+					<b class="fa fa-plus"></b>
+				</a>
+			</ion-col>
+			<ion-col col-5 class="small-btn order">
+				<a [ngClass]="{'active':currentPriceCondition == 1}" (click)="currentPriceCondition=1;limitDW=0;">{{'市价' | translate}}</a>
+				<a [ngClass]="{'active':currentPriceCondition == 0}" (click)="currentPriceCondition=0">{{'限价' | translate}}</a>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-2></ion-col>
+			<ion-col col-10>
+				<span class="currentDW">{{'占用保证金' | translate}}: {{displayBondPrice}}</span>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-2></ion-col>
+			<ion-col col-10 class="flex flex-between">
+				<button ion-button tappable small class="trade-btn red" (tap)="traderMarket('b')">{{'买 入' | translate}}</button>
+				<button ion-button tappable small class="trade-btn green" (tap)="traderMarket('s')">{{'卖 出' | translate}}</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>
+<app-alert></app-alert>

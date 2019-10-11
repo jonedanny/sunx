@@ -1,0 +1,69 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>服 务</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<em class="fa fa-ban" [hidden]="serviceOption.realName"></em>
+				<p (tap)="presentModal(RealnamePage)">
+					<span><i class="fa fa-address-card-o"></i></span>
+					<span>实名认证</span>
+				</p>
+			</ion-col>
+			<ion-col>
+				<em class="fa fa-ban" [hidden]="serviceOption.openAccount"></em>
+				<p (tap)="presentModal(OpenAccountPage)">
+					<span><i class="fa fa-handshake-o"></i></span>
+					<span>{{openAccountName}}</span>
+				</p>
+			</ion-col>
+			<ion-col>
+				<em class="fa fa-ban" [hidden]="isSingUp == 2 && serviceOption.sign"></em>
+				<p (tap)="presentModal(SignPage,'sign')">
+					<span><i class="fa fa-pencil-square"></i></span>
+					<span>签约</span>
+				</p>
+			</ion-col>
+			<ion-col>
+				<em class="fa fa-ban" [hidden]="isSingUp == 1 && serviceOption.resign"></em>
+				<p (tap)="presentModal(ResignPage)">
+					<span><i class="fa fa-undo"></i></span>
+					<span>换绑</span>
+				</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col *ngIf="serviceOption.recharge">
+				<em class="fa fa-ban" [hidden]="serviceOption.recharge"></em>
+				<p (tap)="presentModal(RechargePage)">
+					<span><i class="fa fa-trademark"></i></span>
+					<span>充值</span>
+				</p>
+			</ion-col>
+			<ion-col *ngIf="serviceOption.webRecharge">
+				<em class="fa fa-ban" [hidden]="serviceOption.webRecharge"></em>
+				<p>
+					<a target="_blank" [href]="serviceOption.webRechargeUrl">
+						<span><i class="fa fa-trademark"></i></span>
+						<span>充值</span>
+					</a>
+				</p>
+			</ion-col>
+			<ion-col>
+				<em class="fa fa-ban" [hidden]="serviceOption.withdrawsMoney"></em>
+				<p (tap)="presentModal(WithdrawPage)">
+					<span><i class="fa fa-bank"></i></span>
+					<span>提现</span>
+				</p>
+			</ion-col>
+			<ion-col></ion-col>
+			<ion-col></ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

@@ -1,0 +1,86 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>实名认证信息</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list *ngIf="data">
+		<ion-item>
+			<ion-label color="primary">客户姓名(中文)</ion-label>
+			<div item-content>
+				{{data.nameCn}}
+			</div>
+		</ion-item>
+		<ion-item *ngIf="data.mobile !== ''">
+			<ion-label color="primary">手机</ion-label>
+			<div item-content>
+				{{data.mobile}}
+			</div>
+		</ion-item>
+		<ion-item *ngIf="data.email !== ''">
+			<ion-label color="primary">邮箱</ion-label>
+			<div item-content>
+				{{data.email}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">证件类型</ion-label>
+			<div item-content>
+				{{data.idType === 44?'身份证':'其他'}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">证件号码</ion-label>
+			<div item-content>
+				{{data.idNo}}
+			</div>
+		</ion-item>
+		<ion-item class="group-img">
+			<ion-label color="primary">证件照片</ion-label>
+			<div item-content>
+				<span *ngIf="config.certificateA"><img [src]="groupImg.certificateA" /></span>
+				<span *ngIf="config.certificateB"><img [src]="groupImg.certificateB" /></span>
+			</div>
+			<div item-content>
+				<span *ngIf="config.certificateC"><img [src]="groupImg.certificateC" /></span>
+				<span *ngIf="config.certificateD"><img [src]="groupImg.certificateD" /></span>
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">银行属地</ion-label>
+			<div item-content>
+				{{data.bankCardType === 2?'中国（国内）':'国际'}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">银行名称</ion-label>
+			<div item-content>
+				{{data.bankName}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">户主姓名</ion-label>
+			<div item-content>
+				{{data.bankCardName}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">銀行卡号</ion-label>
+			<div item-content>
+				{{data.bankCardNo}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">支行名称</ion-label>
+			<div item-content class="sub-bank">
+				{{data.bankBranchName}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary">支行行号</ion-label>
+			<div item-content>
+				{{data.bankBranchCode}}
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>

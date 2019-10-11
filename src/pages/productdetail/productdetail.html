@@ -1,0 +1,507 @@
+<ion-header [hidden]="isFullEcharts">
+	<ion-navbar>
+		<ion-title>
+			<span>{{productName}}</span>
+			<span>{{productCode}}</span>
+		</ion-title>
+		<div class="header-opt">
+			<a [ngClass]="{'c_start':isJoinSelfContract == true}" (tap)="joinSelfContract()">
+				<i class="fa fa-star fa-lg"></i>
+			</a>
+			<a *ngIf="tabStatus == 4">
+				<i class="fa fa-clock-o fa-lg"></i>
+				<ion-select okText="{{'确定' | translate}}" cancelText="{{'取消' | translate}}" [(ngModel)]="selectTimeChoose" (ngModelChange)="selectTimeChooseFun()">
+					<ion-option value="1">1{{'分钟 K线' | translate}}</ion-option>
+					<ion-option value="2">5{{'分钟 K线' | translate}}</ion-option>
+					<ion-option value="3">30{{'分钟 K线' | translate}}</ion-option>
+					<ion-option value="4">60{{'分钟 K线' | translate}}</ion-option>
+					<ion-option value="5">{{'日K' | translate}}</ion-option>
+				</ion-select>
+			</a>
+		</div>
+	</ion-navbar>
+</ion-header>
+<ion-content scroll="false" [ngClass]="{'no-margin':isFullEcharts}" class="product-detail-page">
+	<ion-slides (ionSlideDidChange)="slideChanged()" speed="10">
+		<ion-slide *ngFor="let item of productList;let i = index;" [title]="i">
+			<ion-list *ngIf="item.productId == id">
+				<!-- 明细 -->
+				<div class="col-detail" *ngIf="tabStatus == 2 && !isFullEcharts">
+					<div class="trader-detail">
+						<ion-grid>
+							<ion-row>
+								<ion-col col-4>{{'时间' | translate}}</ion-col>
+								<ion-col col-4>{{'最新价' | translate}}</ion-col>
+								<ion-col col-4>{{'数量' | translate}}</ion-col>
+							</ion-row>
+						</ion-grid>
+						<ion-grid *ngIf="historyTraderList.length >= 16 && item.productId == id">
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[0].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[0].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[0].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[1].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[1].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[1].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[2].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[2].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[2].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[3].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[3].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[3].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[4].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[4].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[4].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[5].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[5].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[5].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[6].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[6].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[6].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[7].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[7].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[7].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[8].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[8].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[8].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[9].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[9].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[9].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[10].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[10].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[10].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[11].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[11].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[11].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[12].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[12].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[12].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[13].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[13].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[13].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[14].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[14].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[14].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[15].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[15].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[15].QLastQty}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col col-4>{{historyTraderList[16].DataTimeStamp}}</ion-col>
+								<ion-col col-4>{{historyTraderList[16].QLastPrice}}</ion-col>
+								<ion-col col-4>{{historyTraderList[16].QLastQty}}</ion-col>
+							</ion-row>
+						</ion-grid>
+					</div>
+				</div>
+				<!-- 盘口 -->
+				<div class="col-data" *ngIf="tabStatus == 1 && !isFullEcharts">
+					<table>
+						<tr>
+							<td colspan="2">
+								<p>{{'时间' | translate}}: {{item.DateTimeStamp}}</p>
+							</td>
+						</tr>
+						<tr class="b-s">
+							<td width="50%">
+								<p class="flex flex-between">
+									<span>① {{'卖' | translate}}</span>
+									<span>
+										<a class="c_green">{{item._QAskPrice[4]}}</a>
+										<a *ngIf="commodityType != 4">{{item._QAskQty[4] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+							<td width="50%">
+								<p class="flex flex-between">
+									<span>① {{'买' | translate}}</span>
+									<span>
+										<a class="c_red">{{item._QBidPrice[0]}}</a>
+										<a *ngIf="commodityType != 4">{{item._QBidQty[0] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+						</tr>
+						<tr class="b-s" *ngIf="commodityType != 4">
+							<td>
+								<p class="flex flex-between">
+									<span>② {{'卖' | translate}}</span>
+									<span>
+										<a class="c_green">{{item._QAskPrice[3]}}</a>
+										<a>{{item._QAskQty[3] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>② {{'买' | translate}}</span>
+									<span>
+										<a class="c_red">{{item._QBidPrice[1]}}</a>
+										<a>{{item._QBidQty[1] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+						</tr>
+						<tr class="b-s" *ngIf="commodityType != 4">
+							<td>
+								<p class="flex flex-between">
+									<span>③ {{'卖' | translate}}</span>
+									<span>
+										<a class="c_green">{{item._QAskPrice[2]}}</a>
+										<a>{{item._QAskQty[2] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>③ {{'买' | translate}}</span>
+									<span>
+										<a class="c_red">{{item._QBidPrice[2]}}</a>
+										<a>{{item._QBidQty[2] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+						</tr>
+						<tr class="b-s" *ngIf="commodityType != 4">
+							<td>
+								<p class="flex flex-between">
+									<span>④ {{'卖' | translate}}</span>
+									<span>
+										<a class="c_green">{{item._QAskPrice[1]}}</a>
+										<a>{{item._QAskQty[1] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>④ {{'买' | translate}}</span>
+									<span>
+										<a class="c_red">{{item._QBidPrice[3]}}</a>
+										<a>{{item._QBidQty[3] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+						</tr>
+						<tr class="b-s" *ngIf="commodityType != 4">
+							<td>
+								<p class="flex flex-between">
+									<span>⑤ {{'卖' | translate}}</span>
+									<span>
+										<a class="c_green">{{item._QAskPrice[0]}}</a>
+										<a>{{item._QAskQty[0] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>⑤ {{'买' | translate}}</span>
+									<span>
+										<a class="c_red">{{item._QBidPrice[4]}}</a>
+										<a>{{item._QBidQty[4] | number:'1.0-6'}}</a>
+									</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'最新价' | translate}}</span>
+									<span [ngClass]="{'c_red':item.QChangeValue>0,'c_green':item.QChangeValue<0}">{{item.QLastPrice}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'涨跌' | translate}}</span>
+									<span [ngClass]="{'c_red':item.QChangeValue>0,'c_green':item.QChangeValue<0}">{{item.QChangeValue}} / {{item.QChangeRate | number:'1.0-3'}}%</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'开盘' | translate}}</span>
+									<span>{{item.QOpeningPrice}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'成交量' | translate}}</span>
+									<span>{{commodityType == 4 ? '--' : item.QTotalQty}}</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span class="c_red">{{'最高' | translate}}</span>
+									<span>{{item.QHighPrice}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'持仓量' | translate}}</span>
+									<span>{{commodityType == 4 ? '--' : item.QPositionQty}}</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span class="c_green">{{'最低' | translate}}</span>
+									<span>{{item.QLowPrice}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'最小浮动' | translate}}</span>
+									<span>{{item.unionMinPrices}}</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'均价' | translate}}</span>
+									<span class="orange">{{item.QAveragePrice | number:'1.0-3'}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'结算价' | translate}}</span>
+									<span>--</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'昨结' | translate}}</span>
+									<span>{{item.QPreSettlePrice}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'涨停' | translate}}</span>
+									<span>{{item.QLimitUpPrice}}</span>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'昨收' | translate}}</span>
+									<span>{{item.QPreClosingPrice}}</span>
+								</p>
+							</td>
+							<td>
+								<p class="flex flex-between">
+									<span>{{'跌停' | translate}}</span>
+									<span>{{item.QLimitDownPrice}}</span>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- 分时 -->
+				<div class="col-line" *ngIf="tabStatus == 3" [ngClass]="{'full':isFullEcharts,'ios':plt.is('ios')}">
+					<div class="chart_con"
+						[ngClass]="{'w100p':isFullEcharts || chartsTime != 0}"
+						(press)="isCross=true;changeCrossMode(isCross);closeEchartsHandels(true);"
+						(pressup)="isCross=false;changeCrossMode(isCross);closeEchartsHandels(false);"
+						(panend)="isCross=false;changeCrossMode(isCross);closeEchartsHandels(false);"
+						(panmove)="calcInfoPosition($event)"
+						(swipeup)="isCross=false;changeCrossMode(isCross);closeEchartsHandels(false);"
+						>
+						<!-- CFD合约买卖方向选择 -->
+						<!-- <div class="CFD_forward">
+							<a class="active">Bid</a>
+							<a>Ask</a>
+						</div> -->
+						<line-ma *ngIf="chartsTime == 0 && item.productId == id" class="h100p"></line-ma>
+						<div class="echarts-loading" *ngIf="isLoding">
+							<ion-spinner></ion-spinner>
+						</div>
+					</div>
+					<table class="contract-info-des" *ngIf="!isFullEcharts">
+						<tr>
+							<td width="40%" class="t-c" [ngClass]="{'c_red':item.QChangeValue>0 && commodityType != 4,'c_green':item.QChangeValue<0 && commodityType != 4,'m-p':commodityType != 4}">
+								<span *ngIf="commodityType != 4">{{item.QLastPrice | number:'1.0-6'}}</span>
+								<span class="rem2" *ngIf="commodityType == 4">
+									<a class="c_green">{{item._QAskPrice[4] | number:'1.0-6'}}</a>
+									/
+									<a class="c_red">{{item._QBidPrice[0] | number:'1.0-6'}}</a>
+								</span>
+							</td>
+							<td width="30%">
+								<span class="c_grey">{{'最高' | translate}}</span>
+								<span class="c_red">{{item.QHighPrice | number:'1.0-6'}}</span>
+							</td>
+							<td *ngIf="commodityType != 4" width="30%">
+								<span class="c_grey">{{'昨收' | translate}}</span>
+								<span>{{item.QPreClosingPrice | number:'1.0-6'}}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="t-c">
+								<b class="s-p" [ngClass]="{'c_red':item.QChangeValue>0,'c_green':item.QChangeValue<0}">{{item.QChangeValue | number:'1.0-3'}}</b>
+								/
+								<b class="s-p" [ngClass]="{'c_red':item.QChangeValue>0,'c_green':item.QChangeValue<0}">{{item.QChangeRate | number:'1.0-3'}}%</b>
+							</td>
+							<td>
+								<span class="c_grey">{{'最低' | translate}}</span>
+								<span class="c_green">{{item.QLowPrice | number:'1.0-6'}}</span>
+							</td>
+							<td *ngIf="commodityType != 4">
+								<span class="c_grey">{{'开盘' | translate}}</span>
+								<span>{{item.QOpeningPrice | number:'1.0-6'}}</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- K线 -->
+				<div class="col-candel" *ngIf="tabStatus == 4" [ngClass]="{'full':isFullEcharts,'ios':plt.is('ios')}">
+					<div class="chart_con"
+						[ngClass]="{'w100p':isFullEcharts || chartsTime != 0}"
+						(press)="isCross=true;changeCrossMode(isCross);closeEchartsHandels(true);"
+						(pressup)="isCross=false;changeCrossMode(isCross);closeEchartsHandels(false);"
+						(panend)="isCross=false;changeCrossMode(isCross);closeEchartsHandels(false);"
+						(panmove)="calcInfoPosition($event)"
+						(swipeup)="isCross=false;changeCrossMode(isCross);closeEchartsHandels(false);"
+						>
+						<candel-ma *ngIf="chartsTime != 0  && item.productId == id" class="h100p"></candel-ma>
+						<div class="echarts-loading" *ngIf="isLoding">
+							<ion-spinner></ion-spinner>
+						</div>
+					</div>
+					<table class="contract-info-des" *ngIf="!isFullEcharts">
+						<tr>
+							<td width="40%" class="t-c" [ngClass]="{'c_red':item.QChangeValue>0 && commodityType != 4,'c_green':item.QChangeValue<0 && commodityType != 4,'m-p':commodityType != 4}">
+								<span *ngIf="commodityType != 4">{{item.QLastPrice | number:'1.0-6'}}</span>
+								<span class="rem2" *ngIf="commodityType == 4">
+									<a class="c_green">{{item._QAskPrice[4] | number:'1.0-6'}}</a>
+									/
+									<a class="c_red">{{item._QBidPrice[0] | number:'1.0-6'}}</a>
+								</span>
+							</td>
+							<td width="30%">
+								<span class="c_grey">{{'最高' | translate}}</span>
+								<span class="c_red">{{item.QHighPrice | number:'1.0-6'}}</span>
+							</td>
+							<td *ngIf="commodityType != 4" width="30%">
+								<span class="c_grey">{{'昨收' | translate}}</span>
+								<span>{{item.QPreClosingPrice | number:'1.0-6'}}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="t-c">
+								<b class="s-p" [ngClass]="{'c_red':item.QChangeValue>0,'c_green':item.QChangeValue<0}">{{item.QChangeValue | number:'1.0-3'}}</b>
+								/
+								<b class="s-p" [ngClass]="{'c_red':item.QChangeValue>0,'c_green':item.QChangeValue<0}">{{item.QChangeRate | number:'1.0-3'}}%</b>
+							</td>
+							<td>
+								<span class="c_grey">{{'最低' | translate}}</span>
+								<span class="c_green">{{item.QLowPrice | number:'1.0-6'}}</span>
+							</td>
+							<td *ngIf="commodityType != 4">
+								<span class="c_grey">{{'开盘' | translate}}</span>
+								<span>{{item.QOpeningPrice | number:'1.0-6'}}</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div *ngIf="isFullEcharts">
+					<div class="chart-time" [ngClass]="{'ios':plt.is('ios')}">
+						<div class="fl">
+							<a tappable [ngClass]="{'active':echartsDrawLinestype == 'segmentLine'}" (tap)="echartsDrawLinestypeChange('segmentLine')"><img src="assets/imgs/line1.png" width="30" height="30" /></a>
+							<a tappable [ngClass]="{'active':echartsDrawLinestype == 'curveLine'}" (tap)="echartsDrawLinestypeChange('curveLine')"><img src="assets/imgs/line2.png" width="30" height="30" /></a>
+							<a tappable [ngClass]="{'active':echartsDrawLinestype == 'parallelLine'}" (tap)="echartsDrawLinestypeChange('parallelLine')"><img src="assets/imgs/line3.png" width="30" height="30" /></a>
+							<!-- <a tappable class="fa fa-arrows" [ngClass]="{'active':DrawLinesCanNotMove}" (tap)="changeDrawLinesCanMove()"></a> -->
+							<a tappable (tap)="clearEchartsDraw('back')"><img src="assets/imgs/clear1.png" width="30" height="30" /></a>
+							<a tappable class="fa fa-trash-o fa-2x" (tap)="clearEchartsDraw('all')"></a>
+						</div>
+					</div>
+					<div class="chart_sb flex flex-end" [ngClass]="{'ios':plt.is('ios')}">
+						<div class="sub_index" *ngIf="chartsTime != 0">
+							<div class="con">
+								<span>{{'指标' | translate}}</span>
+								<div class="scroll-subIndex-title">
+								<!-- 主图指标 -->
+								<a [ngClass]="{'active':mainCandel == 'ma'}" (tap)="changeIndex('ma',1)">MA</a>
+								<a [ngClass]="{'active':mainCandel == 'cfd'}" (tap)="changeIndex('cfd',1)" *ngIf="commodityType == 4">CFD</a>
+								<a [ngClass]="{'active':mainCandel == 'boll'}" (tap)="changeIndex('boll',1)">BOLL</a>
+								<a [ngClass]="{'active':mainCandel == 'ema'}" (tap)="changeIndex('ema',1)">EMA</a>
+								<a [ngClass]="{'active':mainCandel == 'bbi'}" (tap)="changeIndex('bbi',1)">BBI</a>
+								<p></p>
+								<!-- 副图指标 -->
+								<a [ngClass]="{'active':subCandel == 'vol'}" (tap)="changeIndex('vol',2)">VOL</a>
+								<a [ngClass]="{'active':subCandel == 'macd'}" (tap)="changeIndex('macd',2)">MACD</a>
+								<a [ngClass]="{'active':subCandel == 'kdj'}" (tap)="changeIndex('kdj',2)">KDJ</a>
+								<a [ngClass]="{'active':subCandel == 'dma'}" (tap)="changeIndex('dma',2)">DMA</a>
+								<a [ngClass]="{'active':subCandel == 'dmi'}" (tap)="changeIndex('dmi',2)">DMI</a>
+								<a [ngClass]="{'active':subCandel == 'dmiql'}" (tap)="changeIndex('dmiql',2)">DMI-QL</a>
+								</div>
+							</div>
+						</div>
+						<div class="sub_index" *ngIf="chartsTime == 0">
+							<div class="con">
+								<span>{{'指标' | translate}}</span>
+								<div class="scroll-subIndex-title">
+									<a [ngClass]="{'active':subLine == 'vol'}" (tap)="changeIndex('vol',3)">VOL</a>
+									<a [ngClass]="{'active':subLine == 'macd'}" (tap)="changeIndex('macd',3)">MACD</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ion-list>
+		</ion-slide>
+	</ion-slides>
+</ion-content>
+<ion-footer class="flex-between flex" [hidden]="isFullEcharts">
+	<a *ngIf="commodityType != 4" tappable [ngClass]="{'active':tabStatus == 2}" (tap)="changeSubscribe(2)">
+		<i class="fa fa-list-alt fa-lg"></i><span>{{'交易明细' | translate}}</span>
+	</a>
+	<a tappable [ngClass]="{'active':tabStatus == 1}" (tap)="changeSubscribe(1);">
+		<i class="fa fa-indent fa-lg"></i><span>{{'盘口' | translate}}</span>
+	</a>
+	<a tappable [ngClass]="{'active':tabStatus == 3}" (tap)="changeSubscribe(3)">
+		<i class="fa fa-line-chart fa-lg"></i><span>{{'分时' | translate}}</span>
+	</a>
+	<a tappable [ngClass]="{'active':tabStatus == 4}" (tap)="changeSubscribe(4);">
+		<i class="fa fa-bar-chart fa-lg"></i><span>{{'K线' | translate}}</span>
+	</a>
+	<a tappable (tap)="presentModal()">
+		<i class="fa fa-flash fa-lg"></i><span>{{'交易' | translate}}</span>
+	</a>
+</ion-footer>
+<app-alert></app-alert>

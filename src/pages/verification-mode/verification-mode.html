@@ -1,0 +1,50 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<span *ngIf="action == 2">{{'绑定邮箱' | translate}}</span>
+			<span *ngIf="action == 3">{{'绑定手机' | translate}}</span>
+			<span *ngIf="action == 4">{{'换绑邮箱' | translate}}</span>
+			<span *ngIf="action == 5">{{'换绑手机' | translate}}</span>
+		</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list>
+		<ion-item *ngIf="action != 2 && action != 3">
+			<ion-label color="primary" stacked>{{'验证方式' | translate}}</ion-label>
+			<ion-select [(ngModel)]="checkWays" okText="{{'确定' | translate}}" cancelText="{{'取消' | translate}}" disabled="true">
+				<ion-option *ngFor="let item of ways" [value]="item.type">{{item.content}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item class="hide">
+			<ion-label color="primary" stacked>{{'操作' | translate}}</ion-label>
+			<ion-select [(ngModel)]="action" okText="{{'确定' | translate}}" cancelText="{{'取消' | translate}}">
+				<ion-option value="0">{{'请选择' | translate}}</ion-option>
+				<ion-option value="2">{{'绑定邮箱' | translate}}</ion-option>
+				<ion-option value="3">{{'绑定手机' | translate}}</ion-option>
+				<ion-option value="4">{{'换绑邮箱' | translate}}</ion-option>
+				<ion-option value="5">{{'换绑手机' | translate}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="action == 2">
+			<ion-label color="primary" stacked>{{'请填写新绑定的邮箱' | translate}}</ion-label>
+			<ion-input type="text" [(ngModel)]="value" placeholder="{{'请输入邮箱地址' | translate}}"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="action == 3">
+			<ion-label color="primary" stacked>{{'请填写新绑定的手机号' | translate}}</ion-label>
+			<ion-input type="text" [(ngModel)]="value" placeholder="{{'请输入手机号码' | translate}}"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-input type="text" [(ngModel)]="checkCode" placeholder="{{'请输入验证码' | translate}}"></ion-input>
+			<a ion-button small item-end (tap)="getCheckCode()">{{postCodeText | translate}}</a>
+		</ion-item>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<button ion-button block full class="button" (click)="changeverification()">{{'提交' | translate}}</button>
+</ion-footer>

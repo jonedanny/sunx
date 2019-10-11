@@ -1,0 +1,29 @@
+page-realname {
+	.group-img {
+		.input-wrapper {
+			display: block;
+			div {
+				width: 100%;
+				span {
+					width: 45%;
+					padding: 3px;
+					border: 1px solid #eee;
+					margin: 0 5px 10px 5px;
+					float: left;
+					height: 120px;
+					overflow: hidden;
+					text-align: center;
+					img {
+						height: 100%;
+					}
+				}
+			}
+		}
+	}
+	.sub-bank {
+		max-width: 260px;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	}
+}

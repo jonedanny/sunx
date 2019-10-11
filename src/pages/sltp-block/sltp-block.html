@@ -1,0 +1,84 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'设置止盈止损' | translate}}</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<ion-label>
+				{{'商品名称' | translate}}
+			</ion-label>
+			<div item-content>
+				{{baseInfo.commodityName}} ({{baseInfo.contractCode}})
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				{{'方向' | translate}}
+			</ion-label>
+			<div item-content *ngIf="baseInfo.orderDirect">
+				{{(baseInfo.orderDirect == 1?'买':'卖') | translate}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				{{'持仓量' | translate}}
+			</ion-label>
+			<div item-content class="c_yellow">
+				{{baseInfo.positionVolume}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				{{'计算价' | translate}}
+			</ion-label>
+			<div item-content>
+				{{baseInfo.toNewPrice | number:'1.3-3'}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				{{'持仓价' | translate}}
+			</ion-label>
+			<div item-content class="c_yellow">
+				{{baseInfo.positionPrice | number:'1.3-3'}}
+			</div>
+		</ion-item>
+		<ion-item>
+			<ion-label class='c_black'>
+				{{'止盈' | translate}}：
+			</ion-label>
+			<ion-input type="number" placeholder="请输入止盈价" [(ngModel)]="tp"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label class='c_black'>
+				{{'止损' | translate}}：
+			</ion-label>
+			<ion-input type="number" placeholder="请输入止损价" [(ngModel)]="sl"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="canSetSameTpLt">
+			<ion-label>
+				{{'同种商品设置相同止盈止损' | translate}}
+			</ion-label>
+			<ion-toggle small [checked]="setSameTpLt" [(ngModel)]="setSameTpLt"></ion-toggle>
+		</ion-item>
+		<ion-card>
+			<ion-card-content>
+				<ion-card-title>{{'操作提示' | translate}}:</ion-card-title>
+				<p class="c_red">1.{{'当止盈或止损设置为 0 时，则设置不生效。' | translate}}</p>
+				<p>2.{{'止盈止损功能设置成功以后长期有效。隔夜、客户端关闭、电脑休眠或者断网时，止盈止损功能都有效。' | translate}}</p>
+				<p>3.{{'止盈止损仅对下单后的持仓生效，手动或者其他方式平仓后，止盈止损功能不会再次生效。' | translate}}</p>
+				<p>4.{{'客户通过交易改变仓位，在不改变持仓方向情况下，止盈止损设置按照最新持仓情况生效。' | translate}}</p>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<button ion-button full (tap)="setSearch()">{{'设置' | translate}}</button>
+</ion-footer>

@@ -1,0 +1,74 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>换绑银行卡</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list>
+		<ion-item *ngIf="!isEditSubBank">
+			<ion-label>开户姓名</ion-label>
+			<div item-content>{{name}}</div>
+		</ion-item>
+		<ion-item *ngIf="!isEditSubBank">
+			<ion-label>证件号码</ion-label>
+			<div item-content>{{certificateNo}}</div>
+		</ion-item>
+		<ion-item *ngIf="!isEditSubBank">
+			<ion-label color="primary" stacked>手机号</ion-label>
+			<ion-input type="text" [(ngModel)]="phone" placeholder="请输入手机号" maxlength="11"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="!isEditSubBank">
+			<ion-label color="primary" stacked>银行卡号</ion-label>
+			<ion-input type="text" [(ngModel)]="cardNo" placeholder="请输入银行卡号" maxlength="32"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="!isEditSubBank && history !== undefined">
+			<ion-label>{{history.recvBankNm}}</ion-label>
+		</ion-item>
+		<ion-item *ngIf="!isEditSubBank && history !== undefined">
+			<ion-label (tap)="isEditSubBank = true">支行行号: {{history.recvTgfi}} ( 点击修改 )</ion-label>
+		</ion-item>
+		<ion-item *ngIf="isEditSubBank">
+			<ion-label color="primary" stacked>所属省份</ion-label>
+			<ion-select cancelText="取消" okText="确定" [(ngModel)]="ProvinceChoose" (ionChange)="getCity()">
+				<ion-option value="">请选择</ion-option>
+				<ion-option *ngFor="let item of Province" [value]="item.id">{{item.provinceName}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="isEditSubBank">
+			<ion-label color="primary" stacked>所属城市</ion-label>
+			<ion-select cancelText="取消" okText="确定" [(ngModel)]="CityChoose" (ionChange)="getBank()">
+				<ion-option value="">请选择</ion-option>
+				<ion-option *ngFor="let item of City" [value]="item.bankAreaCode">{{item.cityName}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="isEditSubBank">
+			<ion-label color="primary" stacked>所属银行</ion-label>
+			<ion-select cancelText="取消" okText="确定" [(ngModel)]="BankChoose" (ionChange)="getSubBank()">
+				<ion-option value="">请选择</ion-option>
+				<ion-option *ngFor="let item of Bank" [value]="item.bankCode">{{item.bankName}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item *ngIf="isEditSubBank" class="subBank">
+			<ion-label color="primary" stacked>支行名称</ion-label>
+			<ion-input type="text" placeholder="请选择支行" maxlength="32" (tap)="presentProfileModal()" [value]="subBankDisplayName" readonly="true"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="isEditSubBank">
+			<ion-label>支行行号</ion-label>
+			<div item-content>{{subBankChoose}}</div>
+		</ion-item>
+		<ion-item *ngIf="!isEditSubBank">
+			<ion-label color="primary" stacked>资金密码</ion-label>
+			<ion-input type="password" [(ngModel)]="accountPassword" placeholder="资金密码为8~16位数字与字母的组合" maxlength="16"></ion-input>
+		</ion-item>
+	</ion-list>
+</ion-content>
+<ion-footer class="flex flex-between">
+	<button *ngIf="!isEditSubBank" ion-button full (tap)="toSign()">换 绑</button>
+	<button *ngIf="isEditSubBank" color="light" ion-button full (tap)="isEditSubBank = false">返 回</button>
+	<button *ngIf="isEditSubBank" ion-button full (tap)="changeSubBankInfo()">确 认</button>
+</ion-footer>

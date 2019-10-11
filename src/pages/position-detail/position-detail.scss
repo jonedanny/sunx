@@ -1,0 +1,319 @@
+page-position-detail ion-header {
+	background-color: #488aff;
+	color: #fff;
+	ion-icon {
+		color: #fff;
+	}
+}
+page-position-detail ion-toolbar {
+	min-height: 32px!important;
+}
+page-position-detail ion-card b {
+	font-size: 1.0rem;
+	color: #fff!important;
+	width: 15px;
+	display: inline-block;
+	text-align: center;
+	line-height: normal;
+}
+page-position-detail .card {
+	background-color: #fafafa;
+	margin: 5px 0 0 0;
+	width: 100%;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	.col {
+		color: #999;
+		text-align: left;
+		font-size: 12px;
+	}
+	span {
+		color: #333;
+	}
+}
+page-position-detail .content.order {
+	padding: 0;
+	border: 0;
+}
+page-position-detail .content.order > div {
+	padding: 5px 0;
+	border-bottom: 1px solid #333;
+}
+page-position-detail .content.order p {
+	width: 100%;
+	margin: 0;
+}
+page-position-detail .fl {
+	float: left;
+}
+page-position-detail .fr {
+	float: right;
+}
+page-position-detail .has-refresher {
+	background: #252f39;
+}
+page-position-detail .has-refresher > .scroll-content {
+	border-top: 0;
+}
+page-position-detail .dataportNav {
+	min-height: 32px;
+}
+page-position-detail .search-input {
+	color: #999;
+}
+page-position-detail input {
+	border: 0;
+	border-bottom: 1px solid #666;
+	background: transparent;
+	width: 100%;
+	float: left;
+}
+page-position-detail .b-s-title {
+	background: #1d262d;
+	color: #666;
+}
+page-position-detail .b-s-title span {
+	font-size: 10px;
+}
+page-position-detail .b-s-num {
+	background: #1f222d;
+}
+page-position-detail .b-s-num p {
+	margin: 0;
+	font-size: 12px;
+	color: #999;
+}
+page-position-detail .b-s-num p a {
+	padding: 0px;
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	width: 15px;
+	font-size: 9px;
+	text-align: center;
+	margin-right: 5px;
+	font-weight: 300;
+}
+page-position-detail .b-s-num ion-col {
+	padding: 0;
+}
+page-position-detail .b-s-num ion-col:first-child {
+	border-right: 1px solid #333;
+}
+page-position-detail .b-s-num ion-col p {
+	padding: 3px 5px;
+}
+page-position-detail .b-s-num ion-col:first-child p:first-child {
+	background: #1c0000;
+	font-weight: bold;
+}
+page-position-detail .b-s-num ion-col:first-child p:first-child span {
+	font-size: 1.6rem;
+}
+page-position-detail .b-s-num ion-col:last-child p:first-child {
+	background: #001e09;
+	font-weight: bold;
+}
+page-position-detail .b-s-num ion-col:last-child p:first-child span {
+	font-size: 1.6rem;
+}
+page-position-detail .b-s-num ion-col:first-child a {
+	background: red;
+}
+page-position-detail .b-s-num ion-col:last-child a {
+	background: green;
+}
+page-position-detail .b-s-num ion-col span {
+	width: auto!important;
+}
+page-position-detail .b-s-num ion-col:first-child p span:first-child {
+	color: red;
+}
+page-position-detail .b-s-num ion-col:last-child p span:first-child {
+	color: green;
+}
+page-position-detail .process-bar {
+	background: #000;
+	opacity: 0.8;
+	width: 100%;
+	height: 7px;
+}
+page-position-detail .process-bar > * {
+	height: 7px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+page-position-detail .process-bar .b {
+	background: #ff0000;
+}
+page-position-detail .process-bar .s {
+	background: #5aff00;
+}
+page-position-detail .trader {
+	color: #999;
+	background: #1f222d;
+	border-top: 1px solid #111;
+	border-bottom: 1px solid #111;
+}
+page-position-detail .common-price,page-position-detail .common-price table {
+	width: 100%;
+	overflow: hidden;
+}
+page-position-detail .common-price .hands .undeit {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.8;
+}
+page-position-detail .common-price .hands {
+	position: relative;
+}
+page-position-detail .common-price .hands a,page-position-detail .common-price .hands span {
+	height: 30px;
+	line-height: 30px;
+	float: left;
+}
+page-position-detail .common-price .hands a {
+	width: 30px;
+	line-height: 30px;
+	background: #252f39;
+	text-align: center;
+}
+page-position-detail .common-price .hands a ion-icon {
+	font-size: 1.8em;
+	font-weight: bold;
+	color: #333;
+}
+page-position-detail .common-price .hands span {
+	width: 70px;
+	background: #5f787c;
+	color: #fff;
+	text-align: center;
+	font-size: 12px;
+}
+page-position-detail .common-price .hands b {
+	line-height: 33px;
+	color: #fff;
+}
+page-position-detail .common-price button.red {
+	background: red;
+}
+page-position-detail .common-price button.green {
+	background: green;
+}
+page-position-detail .small-btn a {
+	float: left;
+	font-size: 12px;
+	color: #666;
+	border: 1px solid #666;
+	padding: 2px;
+	margin: 0 2px;
+	width: 29%;
+	text-align: center;
+	margin-top: 4px;
+}
+page-position-detail .small-btn a.active {
+	color: #ff9900;
+	border-color: #ff9900;
+}
+page-position-detail .trade-btn {
+	text-align: center;
+}
+page-position-detail .currentDW {
+	font-size: 10px!important;
+	text-indent: -2em;
+}
+page-position-detail .trade-btn {
+	width: 35%;
+}
+page-position-detail .trade-btn span {
+	width: auto!important;
+}
+page-position-detail .clear-val {
+	color: #fff;
+	width: 25px;
+	height: 20px;
+	line-height: 20px;
+}
+page-position-detail .confirm-con .masker {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.8;
+	left: 0;
+	top: 0;
+}
+page-position-detail .confirm-con .content {
+	position: fixed;
+	width: 300px;
+	left: calc(50% - 150px);
+	top: 20%;
+	background: #252f39;
+	border-radius: 3px;
+	overflow: hidden;
+}
+page-position-detail .sltp-title {
+	width: 100%;
+	background: #999;
+}
+page-position-detail .sltp-title ion-icon {
+	padding: 10px;
+	font-size: 2.0rem;
+}
+page-position-detail .confirm-con .content h3 {
+	margin: 0;
+	font-size: 1.6rem;
+	padding: 10px;
+}
+page-position-detail .confirm-con .content .info {
+	padding: 10px;
+}
+page-position-detail .confirm-con .content table {
+	width: 100%;
+}
+page-position-detail .confirm-con .content td {
+	padding: 5px;
+	color: #999;
+	border: 1px solid #333;
+	background: #1d262d;
+}
+page-position-detail .topic {
+	font-size: 1.2rem;
+	text-align: left;
+	background: #ffffcc;
+	padding: 10px;
+	color: #333;
+	height: 100px;
+	overflow: auto;
+}
+page-position-detail .topic p {
+	margin: 0;
+	text-indent: 2em;
+	line-height: 1.5em;
+}
+page-position-detail .confirm-con .content.sltp {
+	top: 10%;
+}
+page-position-detail .content div button {
+	width: 40%;
+}
+page-position-detail .content div button span {
+	width: auto!important;
+}
+page-position-detail .card {
+	.card-content {
+		padding:0;
+	}
+	.col {
+		color: #999;
+		text-align: left;
+		font-size: 12px;
+	}
+	span {
+		color: #333;
+	}
+}
