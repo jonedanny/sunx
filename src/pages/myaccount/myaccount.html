@@ -1,0 +1,158 @@
+<ion-header>
+	<ion-navbar>
+		<ion-toolbar>
+			<!-- <ion-buttons start></ion-buttons> -->
+			<ion-title>
+				<span>{{'账户' | translate}}</span>
+			</ion-title>
+			<!-- <ion-buttons end>
+				<button class="language" ion-button icon-only (tap)="language()">
+					<i class="fa fa-language"></i>&nbsp;{{'系统语言' | translate}}
+				</button>
+			</ion-buttons> -->
+		</ion-toolbar>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<div id="information" *ngIf="userValidate">
+		<div class="top">
+			<div class="flex flex-between proflie">
+				<ion-avatar>
+					<img src="assets/imgs/default-img.png" />
+				</ion-avatar>
+				<ion-grid>
+					<ion-row>
+						<ion-col>
+							<ion-icon class="fa fa-user" small></ion-icon>
+							{{userInfo.loginName | slice:0:16}}
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col (tap)="viewVerification(userValidate.email==''?2:4)">
+							<ion-icon class="fa fa-envelope" small></ion-icon>
+							<a class="edit">{{(userValidate.email==''?'未绑定邮箱':userValidate.email) | slice:0:18 | translate}}</a>
+						</ion-col>
+						<ion-col (tap)="viewVerification(userValidate.phone==''?3:5)">
+							<ion-icon class="fa fa-phone-square" small></ion-icon>
+							<a class="edit">{{(userValidate.phone==''?'未绑定手机':userValidate.phone) | translate}}</a>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+			<div class="btn-group">
+				<a (tap)="turnPage('PersionPwdPage')">
+					<ion-icon class="fa fa-unlock-alt fa-2x"></ion-icon>
+					<span class="edit">{{'个人密码' | translate}}</span>
+				</a>
+				<a (tap)="turnPage('GoldPwdPage')">
+					<ion-icon class="fa fa-key fa-2x"></ion-icon>
+					<span class="edit">{{'资金密码' | translate}}</span>
+				</a>
+				<a (tap)="turnPage('CapitalFlowPage')">
+					<ion-icon class="fa fa-file-text fa-2x"></ion-icon>
+					<span class="edit">{{'资金流水' | translate}}</span>
+				</a>
+				<a (tap)="turnPage('RealnamePage')">
+					<ion-icon class="fa fa-clipboard fa-2x"></ion-icon>
+					<span class="edit">{{'实名信息' | translate}}</span>
+				</a>
+				<a (tap)="traderMoney(1)">
+					<ion-icon class="fa fa-download fa-2x"></ion-icon>
+					<span class="edit">{{'充值' | translate}}</span>
+				</a>
+				<a (tap)="traderMoney(2)">
+					<ion-icon class="fa fa-hand-lizard-o fa-2x"></ion-icon>
+					<span class="edit">{{'提现' | translate}}</span>
+				</a>
+				<a (tap)="changeBankCard(2)">
+					<ion-icon class="fa fa-credit-card fa-2x"></ion-icon>
+					<span class="edit">{{'换绑银行卡' | translate}}</span>
+				</a>
+				<a (tap)="turnPage('NoticePage')">
+					<ion-icon class="fa fa-podcast fa-2x"></ion-icon>
+					<span class="edit">{{'系统公告' | translate}}</span>
+				</a>
+				<a (tap)="turnPage('DisclaimerPage')">
+					<ion-icon class="fa fa-warning fa-2x"></ion-icon>
+					<span class="edit">{{'免责条款声明' | translate}}</span>
+				</a>
+				<a (tap)="language()">
+					<ion-icon class="fa fa-language fa-2x"></ion-icon>
+					<span class="edit">{{'系统语言' | translate}}</span>
+				</a>
+				<a (tap)="turnPage('LoginPage')">
+					<ion-icon class="fa fa-sign-out fa-2x"></ion-icon>
+					<span class="edit">{{'切换用户' | translate}}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<ion-list>
+		<ion-item class="view-account tt">
+			<ion-label>
+				{{'币种组' | translate}}
+			</ion-label>
+			<ion-select [(ngModel)]="currencyGroupId" (ngModelChange)="persionInfo = []" okText="{{'确定' | translate}}" cancelText="{{'取消' | translate}}">
+				<ion-option *ngFor="let item of currencyGroupList" value="{{item.currencyGroupId}}">
+					{{item.currencyGroupName}}
+				</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'盈亏' | translate}}
+			</ion-label>
+			<div item-content [ngClass]="{'c_red':persionInfo.floatProfit > 0,'c_green':persionInfo.floatProfit < 0}">{{persionInfo.floatProfit | number:'1.2-3'}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'结余' | translate}}
+			</ion-label>
+			<div item-content>{{persionInfo.balance | number:'1.2-3'}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'净值' | translate}}
+			</ion-label>
+			<div item-content>{{persionInfo.netWorth | number:'1.2-3'}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'可用保证金' | translate}}
+			</ion-label>
+			<div item-content>{{persionInfo.usableDeposit | number:'1.2-3'}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'占用保证金' | translate}}
+			</ion-label>
+			<div item-content>{{persionInfo.deposit | number:'1.2-3'}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'冻结' | translate}}
+			</ion-label>
+			<div item-content>{{persionInfo.freeze | number:'1.2-3'}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<ion-label>
+				<ion-icon class="fa fa-angle-double-right" small></ion-icon>
+				{{'风险率' | translate}}
+			</ion-label>
+			<div item-content>{{persionInfo.riskRate | translate}}</div>
+		</ion-item>
+		<ion-item class="view-account">
+			<div item-content>
+				<a class="view-detail" (tap)="viewDetail()">
+					{{'查看该币种组明细 >>' | translate}}
+				</a>
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>

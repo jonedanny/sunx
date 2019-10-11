@@ -1,0 +1,314 @@
+page-home {
+	background-color: #fff;
+}
+page-home .scroll-content {
+	overflow: hidden;
+}
+page-home .out-con-inner {
+	width: 100%;
+	position: relative;
+	zoom: 1;
+}
+page-home .out-con {
+	color: #ddd;
+	height: calc(100% - 59px);
+	width: 100%;
+	overflow: auto;
+}
+page-home .market-title {
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	border-bottom: 1px solid #c3d0da;
+	background: #eceef8;
+	margin-top: 4px;
+}
+page-home ion-select {
+	max-width: none;
+}
+page-home .title ul {
+	padding: 0;
+	margin: 0;
+}
+page-home .title ul li {
+	list-style: none;
+	text-align: center;
+}
+page-home .title li {
+	float: left;
+	padding: 0 5px;
+	background: #111;
+	color: #999;
+	text-align: left;
+}
+page-home .trader-resource-list {
+	height: 50px;
+	font-size: 1.7rem;
+}
+page-home .trader-resource-list.name {
+	height: 50px;
+}
+page-home .trader-resource-list.name  a {
+	width: 120px;
+	height: 100%;
+	line-height: 20px;
+	float: left;
+	padding: 5px 10px;
+}
+page-home .market-title span {
+	display: block;
+	float: left;
+	color: #999;
+	padding: 0 5px;
+}
+page-home .trader-resource-list > div {
+	height: 100%;
+	float: left;
+}
+page-home .trader-resource-list.data {
+	width: 100%;
+	border-bottom: 1px solid #dedede;
+	color: #5c7688;
+	background: #fff;
+}
+page-home .trader-resource-list.data > div {
+	line-height: 50px;
+}
+page-home .trader-resource-list.data p {
+	margin: 0;
+	line-height: 15px;
+	height: 20px;
+	overflow:hidden;
+}
+page-home .trader-resource-list.data p:first-child {
+	height: 30px;
+	line-height: 35px;
+	overflow:hidden;
+}
+page-home .trader-resource-list.data div.cfd p {
+	height: 25px!important;
+	overflow:hidden;
+}
+page-home .trader-resource-list.data div.cfd p:first-child {
+	line-height: 30px!important;
+}
+page-home .trader-resource-list.data div.cfd p:last-child {
+	line-height: 20px!important;
+}
+page-home .trader-resource-list.data span {
+	display: block;
+}
+page-home .trader-resource-list > div span {
+	font-size: 15px;
+	font-weight: 600;
+}
+page-home .trader-resource-list.data > div {
+	padding: 0 5px;
+}
+page-home .trader-resource-list.name span {
+	display: block;
+	height: 50%;
+}
+page-home .trader-resource-list.name span:first-child {
+	font-size: 1.3rem;
+	color: #fff;
+}
+page-home .trader-resource-list.name span:last-child {
+	font-size: 0.8rem;
+	color: #999;
+}
+page-home .trader-resource-list.red {
+	color: red;
+}
+page-home .trader-resource-list.green {
+	color: green;
+}
+page-home .trader-resource-list mark {
+	padding: 3px;
+	background: transparent;
+	color: #ddd;
+}
+page-home .trader-resource-list.red mark {
+	background: red;
+}
+page-home .trader-resource-list.green mark {
+	background: green;
+}
+page-home .turn-page {
+	height: 30px;
+	line-height: 30px;
+	color: #ddd;
+	font-size: 12px;
+	width: 100%;
+}
+page-home .turn-page .search input {
+	height: 30px;
+	line-height: 30px;
+	background: #999;
+	border: 0;
+	color: #333;
+	width: 100px;
+}
+page-home .turn-page .search a {
+	float: left;
+	width: 20px;
+	height: 30px;
+	text-align: center;
+	background: #999;
+	color: #777;
+	font-size: 1.2rem;
+}
+page-home .ischange1.c_red {
+	-webkit-animation-name: changeBg1;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: 0s;
+}
+page-home .ischange2.c_red {
+	-webkit-animation-name: changeBg2;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: 0s;
+}
+page-home .ischange1.c_green {
+	-webkit-animation-name: changeBg3;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: 0s;
+}
+page-home .ischange2.c_green {
+	-webkit-animation-name: changeBg4;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-delay: 0s;
+}
+@-webkit-keyframes changeBg1 {
+	0% {
+		background: #ffe1df;
+	}
+	100% {
+		background: #fff;
+	}
+}
+@-webkit-keyframes changeBg2 {
+	0% {
+		background: #ffe1df;
+	}
+	100% {
+		background: #fff;
+	}
+}
+@-webkit-keyframes changeBg3 {
+	0% {
+		background: #c7ffe7;
+	}
+	100% {
+		background: #fff;
+	}
+}
+@-webkit-keyframes changeBg4 {
+	0% {
+		background: #c7ffe7;
+	}
+	100% {
+		background: #fff;
+	}
+}
+page-home span.qty {
+	margin: 0 auto;
+}
+page-home span.qty a {
+	width: 40%;
+	height: 10px;
+	display: block;
+	background: #33FF00;
+	border: 1px solid #bbb;
+	overflow: hidden;
+}
+page-home span.qty em {
+	width: 30%;
+	text-align: center;
+}
+page-home span.qty a,page-home span.qty em {
+	float: left;
+}
+page-home span.qty a i {
+	height: 10px;
+	background: red;
+	display: block;
+	margin-top: 0px;
+}
+page-home ion-title select {
+	background: transparent;
+	border: 0;
+	font-size: 14px;
+	font-weight: 300;
+	text-align: center;
+	text-align-last: center;
+}
+page-home .scroll-x {
+	padding-top: 4px;
+	width: 100%;
+	height: 35px;
+	overflow-y: none;
+	background: #488aff;
+	a {
+		color: #f8f8f8;
+	}
+	a.active {
+		color: #fff;
+	}
+}
+page-home .scroll-x::-webkit-scrollbar {
+	display: none;
+}
+page-home .scroll-x .scroll-content {
+	background: #fff;
+}
+page-home .scroll-x a {
+	font-size: 14px;
+	padding: 8px 0px 4px 0px;
+	margin-bottom: 4px;
+	margin: 0 8px;
+}
+page-home .trader-resource-list i.arrow {
+	font-size: 10px!important;
+}
+page-home .trader-resource-list.data div.w27p p {
+	height: 50px;
+	line-height: 50px;
+}
+page-home .trader-resource-list.data div.w27p.QChangeRate p span {
+	height: 25px;
+	line-height: 25px;
+	margin-top: 12.5px;
+	background: #bfd3e1;
+	color: #fff;
+	border-radius: 5px;
+}
+page-home .common-title {
+	border: 0;
+}
+page-home {
+	.scroll-content,
+	.toolbar-background,
+	ion-content,
+	ion-item,
+	ion-header::after {
+		background-image: none;
+		border: 0;
+	}
+	ion-header {
+		background: #488aff!important;
+	}
+}
+page-home .segment-button,
+page-home ion-segment {
+	border: 0px!important;
+}
+page-home ion-segment.segment-ios {
+	height: 25px;
+	line-height: 25px;
+	top: 0px;
+	ion-segment-button {
+		height: 25px!important;
+		line-height: 25px!important;
+	}
+}

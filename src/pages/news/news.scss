@@ -1,0 +1,34 @@
+page-news nav.tabs {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background: #444;
+	overflow: hidden;
+	border-bottom: 1px solid #333;
+	text-align: left;
+}
+page-news nav.tabs a {
+	color: #999;
+	padding: 0 20px;
+	height: 40px;
+	display: inline-block;
+}
+page-news nav.tabs a.active {
+	background: #333;
+	color: #eee;
+	box-shadow: 1px 1px 3px #111 inset;
+}
+page-news .iframe {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #333;
+}
+page-news .scroll-content {
+	background: #ecf3fa;
+}
+page-news ion-toolbar {
+	min-height: 2.6rem!important;
+}
+page-news .scroll-content {
+    -webkit-overflow-scrolling: touch !important;
+}

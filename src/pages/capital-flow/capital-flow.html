@@ -1,0 +1,41 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'资金流水' | translate}}</ion-title>
+	</ion-navbar>
+	<div class="title flex flex-between">
+		<span>{{'币种' | translate}}</span>
+		<span>{{'方向' | translate}}</span>
+		<span>{{'流水类型' | translate}}</span>
+		<span>{{'流水状态' | translate}}</span>
+		<span>{{'金额' | translate}}</span>
+	</div>
+</ion-header>
+<ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+		pullingIcon="arrow-dropdown"
+		pullingText="{{'下拉刷新' | translate}}"
+		refreshingSpinner="circles"
+		refreshingText="{{'正在刷新数据 ...' | translate}}">
+		</ion-refresher-content>
+	</ion-refresher>
+	<ion-list>
+		<div class="data-list" *ngFor="let item of capitalList" [ngClass]="{'bg-green':item.ioType==1,'bg-red':item.ioType==-1}">
+			<p>{{'创建时间' | translate}}: {{item.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+			<div>
+				<span>{{changeCurrencyText(item.currency)}}</span>
+				<span>{{(ioTypeChange(item.ioType)) | translate}}</span>
+				<span>{{(flowTypeChange(item.tradeType)) | translate}}</span>
+				<span>{{(flowStateChange(item.state)) | translate}}</span>
+				<span>{{item.ioNumber | number:'1.2-6'}}</span>
+			</div>
+		</div>
+	</ion-list>
+	<app-alert></app-alert>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="{{'加载中...' | translate}}">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

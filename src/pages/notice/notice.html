@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{'系统公告' | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content scroll="false">
+	<ion-refresher *ngIf="selectTabs != 1" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+		pullingIcon="arrow-dropdown"
+		pullingText="{{'下拉刷新' | translate}}"
+		refreshingSpinner="circles"
+		refreshingText="{{'正在刷新数据 ...' | translate}}">
+		</ion-refresher-content>
+	</ion-refresher>
+	<ion-list>
+		<ion-card class="no-data" *ngIf="noticeList.length == 0">
+			<ion-card-content>
+				<i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp; {{'暂无系统公告' | translate}}
+			</ion-card-content>
+		</ion-card>
+		<ion-item
+		*ngFor="let item of noticeList"
+		(tap)="presentProfileModal(item.title,item.content,item.createUserLoginName,item.createTime,item.readFlag,item.noticeId)"
+		>
+			<ion-note item-start>
+				<i class="fa fa-envelope c_yellow" *ngIf="item.readFlag == 0"></i>
+				<i class="fa fa-envelope-open-o" *ngIf="item.readFlag == 1"></i>
+			</ion-note>
+				{{item.title}}
+			<ion-note item-end>
+				{{item.createTime | date:'yyyy-MM-dd'}}
+			</ion-note>
+		</ion-item>
+	</ion-list>
+</ion-content>

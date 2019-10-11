@@ -1,0 +1,46 @@
+<ion-content class="login-bg" no-bounce>
+	<figure class="logo">
+		<figcaption><img [src]="logoImg" /></figcaption>
+	</figure>
+	<section class="login-container">
+		<div class="rows input">
+			<i class="fa fa-vcard"></i>
+			<i class="fa fa-times-circle clear-val" (tap)="orgcode = ''"></i>
+			<span><input type="text" placeholder="{{'请输入机构代码' | translate}}" autocomplete="new-password" [(ngModel)]="orgcode" (ngModelChange)="clearSpace(orgcode,'orgcode')" /></span>
+		</div>
+		<div class="rows input">
+			<i class="fa fa-users"></i>
+			<i class="fa fa-times-circle clear-val" (tap)="username = ''"></i>
+			<span><input type="text" placeholder="{{'请输入登录账号' | translate}}" autocomplete="new-password" [(ngModel)]="username" (ngModelChange)="clearSpace(username,'username')" /></span>
+		</div>
+		<div class="rows input">
+			<i class="fa fa-unlock-alt"></i>
+			<i class="fa" id="eye" [ngClass]="{'fa-eye-slash':isShowPWD == 'password','fa-eye':isShowPWD == 'text'}" (tap)="isShowPWD = (isShowPWD == 'text')?'password':'text'"></i>
+			<span><input [attr.type]="isShowPWD" placeholder="{{'请输入登录密码' | translate}}" autocomplete="new-password" [(ngModel)]="password" (ngModelChange)="clearSpace(password,'password')" /></span>
+		</div>
+		<div class="login-btn">
+			<button ion-button block (tap)="logIn(orgcode, username, password)" icon-only>
+				{{'登录' | translate}}
+			</button>
+		</div>
+		<div class="flex flex-between login-opt">
+			<p (tap)="isSaveLoginInfo = !isSaveLoginInfo">
+				<i [hidden]="isSaveLoginInfo" class="fa fa-square-o"></i>
+				<i [hidden]="!isSaveLoginInfo" class="fa fa-check-square-o"></i>
+				<input class="hide" type="checkbox" [(ngModel)]="isSaveLoginInfo" />
+				<a>{{'记住密码' | translate}}</a>
+			</p>
+			<p class="forget-pwd"  (tap)="toForgetPwd()">
+				<a>{{'忘记密码' | translate}}?</a>
+			</p>
+		</div>
+	</section>
+	<a class="register" (tap)="toRegister()">
+		{{'还没有账号？ 注册' | translate}}
+	</a>
+</ion-content>
+<ion-footer id="login-footer">
+	<div class="login-oth-info">
+		{{'系统版本号' | translate}}: 5.31.51
+	</div>
+</ion-footer>

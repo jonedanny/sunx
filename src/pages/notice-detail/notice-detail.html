@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>系统公告</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-list>
+		<h4>{{title}}</h4>
+		<div class="notice-content" [innerHTML]="content"></div>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<div class="sub-title flex flex-between">
+		<span>{{'来源' | translate}}: {{createUserLoginName}}</span>
+		<span>{{'发布时间' | translate}}: {{createTime | date:'yyyy-MM-dd'}}</span>
+	</div>
+</ion-footer>

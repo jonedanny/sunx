@@ -1,0 +1,18 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>资 讯</ion-title>
+	</ion-navbar>
+	<div class="common-title flex flex-start">
+		<a class="w50p" (tap)="changeTab = 1" [ngClass]="{'active':changeTab == 1}">实时新闻</a>
+		<a class="w50p" (tap)="changeTab = 2" [ngClass]="{'active':changeTab == 2}">日历财经</a>
+	</div>
+</ion-header>
+<ion-content class="content">
+	<iframe class="iframe news" [ngClass]="{'hide':changeTab != 1}" [src]="newsUrl">
+    </iframe>
+    <iframe class="iframe calendar" [ngClass]="{'hide':changeTab != 2}" [src]="calendarUrl">
+    </iframe>
+</ion-content>

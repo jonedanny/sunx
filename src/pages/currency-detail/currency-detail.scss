@@ -1,0 +1,23 @@
+page-currency-detail .card {
+	background-color: #f8f8f8;
+	margin: 0;
+	width: 100%;
+	margin-top: 5px;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	.card-content {
+		padding:0;
+	}
+	.col {
+		color: #999;
+		text-align: left;
+		font-size: 14px;
+	}
+	span {
+		color: #333;
+	}
+}
+page-currency-detail .no-data {
+	padding: 16px;
+	color: #999;
+}

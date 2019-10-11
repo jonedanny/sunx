@@ -1,0 +1,37 @@
+page-notice-detail {
+	h4 {
+		width: 100%;
+		color: #ddd;
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+		border-bottom: 1px solid #666;
+	}
+	.sub-title {
+		padding: 5px;
+		background: #f8f8f8;
+		color: #333;
+	}
+	.notice-content {
+		color: #999;
+		p {
+			text-indent: 2em;
+			text-align: left;
+		}
+	}
+	.scroll-content {
+		background-color: #fff;
+	}
+	table {
+		width: 100%;
+		td {
+			border: 1px solid #eee;
+			width: auto;
+			padding: 5px;
+			p {
+				text-indent: 0em!important;
+				margin: 0!important;
+				font-size: 12px;
+			}
+		}
+	}
+}

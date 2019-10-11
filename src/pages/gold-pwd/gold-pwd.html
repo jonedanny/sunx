@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>修 改 资 金 密 码</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list *ngIf="type == 1">
+		<ion-item>
+			<ion-label color="primary" stacked>旧密码</ion-label>
+			<ion-input type="password" [(ngModel)]="oldPwd" placeholder="请输入旧密码"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>新密码</ion-label>
+			<ion-input type="password" [(ngModel)]="newPwd" placeholder="资金密码为8~16位数字与字母的组合"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>确认密码</ion-label>
+			<ion-input type="password" [(ngModel)]="repeatPwd" placeholder="资金密码为8~16位数字与字母的组合"></ion-input>
+		</ion-item>
+		<ion-item>
+			<button ion-button block full class="button orange" (tap)="changePwd()">确认修改密码</button>
+		</ion-item>
+		<ion-item class="t-c">
+			其他方式 <a (tap)="changeType(2)">通过手机或邮箱找回密码 >></a>
+		</ion-item>
+	</ion-list>
+	<ion-list *ngIf="type == 2">
+		<ion-item>
+			<ion-label color="primary" stacked>验证方式</ion-label>
+			<ion-select [(ngModel)]="checkWays" okText="确定" cancelText="取消">
+				<ion-option *ngFor="let item of ways" [value]="item.type">{{item.type==0?'邮箱':'手机'}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-input type="text" [(ngModel)]="checkCode" placeholder="请输入验证码"></ion-input>
+			<a ion-button small item-end (tap)="getCheckCode()">{{postCodeText}}</a>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>新密码</ion-label>
+			<ion-input type="password" [(ngModel)]="newPwd" placeholder="资金密码为8~16位数字与字母的组合"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" stacked>确认密码</ion-label>
+			<ion-input type="password" [(ngModel)]="repeatPwd" placeholder="资金密码为8~16位数字与字母的组合"></ion-input>
+		</ion-item>
+		<ion-item>
+			<button ion-button block full class="button orange" (tap)="changePwdOtherWays()">确认修改密码</button>
+		</ion-item>
+		<ion-item class="t-c">
+			其他方式 <a (tap)="changeType(1)">通过旧密码修改密码 >></a>
+		</ion-item>
+	</ion-list>
+</ion-content>

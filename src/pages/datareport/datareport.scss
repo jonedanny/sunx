@@ -1,0 +1,413 @@
+page-datareport ion-card b {
+	font-size: 1.0rem;
+	color: #fff!important;
+	width: 15px;
+	display: inline-block;
+	text-align: center;
+	line-height: normal;
+}
+page-datareport .capital {
+	background-color: #eaf6ff;
+	padding: 5px;
+}
+page-datareport .content.order {
+	padding: 0;
+	border: 0;
+}
+page-datareport .content.order > div {
+	padding: 5px 0;
+	border-bottom: 1px solid #333;
+}
+page-datareport .content.order p {
+	width: 100%;
+	margin: 0;
+}
+page-datareport .fl {
+	float: left;
+}
+page-datareport .fr {
+	float: right;
+}
+page-datareport .has-refresher > .scroll-content {
+	border-top: 0;
+}
+page-datareport .dataportNav {
+	min-height: 32px;
+}
+page-datareport .search-content {
+	height: 100%;
+}
+page-datareport .search-input ion-row {
+	color: #999;
+	margin-top: 10px;
+}
+page-datareport input {
+	border: 0;
+	border-bottom: 1px solid #666;
+	background: transparent;
+	width: 100%;
+	border-radius: 0px;
+	float: left;
+}
+page-datareport .b-s-title {
+	background: #1d262d;
+	color: #666;
+}
+page-datareport .b-s-title span {
+	font-size: 10px;
+}
+page-datareport .b-s-num {
+	background: #1f222d;
+}
+page-datareport .b-s-num p {
+	margin: 0;
+	font-size: 12px;
+	color: #999;
+}
+page-datareport .b-s-num p a {
+	padding: 0px;
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	width: 15px;
+	font-size: 9px;
+	text-align: center;
+	margin-right: 5px;
+	font-weight: 300;
+}
+page-datareport .b-s-num ion-col {
+	padding: 0;
+}
+page-datareport .b-s-num ion-col:first-child {
+	border-right: 1px solid #333;
+}
+page-datareport .b-s-num ion-col p {
+	padding: 3px 5px;
+}
+page-datareport .b-s-num ion-col:first-child p:first-child {
+	background: #1c0000;
+	font-weight: bold;
+}
+page-datareport .b-s-num ion-col:first-child p:first-child span {
+	font-size: 1.6rem;
+}
+page-datareport .b-s-num ion-col:last-child p:first-child {
+	background: #001e09;
+	font-weight: bold;
+}
+page-datareport .b-s-num ion-col:last-child p:first-child span {
+	font-size: 1.6rem;
+}
+page-datareport .b-s-num ion-col:first-child a {
+	background: red;
+}
+page-datareport .b-s-num ion-col:last-child a {
+	background: green;
+}
+page-datareport .b-s-num ion-col span {
+	width: auto!important;
+}
+page-datareport .b-s-num ion-col:first-child p span:first-child {
+	color: red;
+}
+page-datareport .b-s-num ion-col:last-child p span:first-child {
+	color: green;
+}
+page-datareport .process-bar {
+	background: #000;
+	opacity: 0.8;
+	width: 100%;
+	height: 7px;
+}
+page-datareport .process-bar > * {
+	height: 7px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+page-datareport .process-bar .b {
+	background: #ff0000;
+}
+page-datareport .process-bar .s {
+	background: #5aff00;
+}
+page-datareport .trader {
+	color: #999;
+	background: #1f222d;
+	border-top: 1px solid #111;
+	border-bottom: 1px solid #111;
+}
+page-datareport .common-price,page-datareport .common-price table {
+	width: 100%;
+	overflow: hidden;
+}
+page-datareport .common-price .hands .undeit {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.8;
+}
+page-datareport .common-price .hands {
+	position: relative;
+}
+page-datareport .common-price .hands a,page-datareport .common-price .hands span {
+	height: 30px;
+	line-height: 30px;
+	float: left;
+}
+page-datareport .common-price .hands a {
+	width: 30px;
+	line-height: 30px;
+	background: #252f39;
+	text-align: center;
+}
+page-datareport .common-price .hands a ion-icon {
+	font-size: 1.8em;
+	font-weight: bold;
+	color: #333;
+}
+page-datareport .common-price .hands span {
+	width: 70px;
+	background: #5f787c;
+	color: #fff;
+	text-align: center;
+	font-size: 12px;
+}
+page-datareport .common-price .hands b {
+	line-height: 33px;
+	color: #fff;
+}
+page-datareport .common-price button.red {
+	background: red;
+}
+page-datareport .common-price button.green {
+	background: green;
+}
+page-datareport .small-btn a {
+	float: left;
+	font-size: 12px;
+	color: #666;
+	border: 1px solid #666;
+	padding: 2px;
+	margin: 0 2px;
+	width: 29%;
+	text-align: center;
+	margin-top: 4px;
+}
+page-datareport .small-btn a.active {
+	color: #ff9900;
+	border-color: #ff9900;
+}
+page-datareport .trade-btn {
+	text-align: center;
+}
+page-datareport .currentDW {
+	font-size: 10px!important;
+	text-indent: -2em;
+}
+page-datareport .trade-btn {
+	width: 35%;
+}
+page-datareport .trade-btn span {
+	width: auto!important;
+}
+page-datareport .clear-val {
+	width: 25px;
+	height: 20px;
+	line-height: 20px;
+}
+page-datareport .search-list {
+	height: calc(100% - 50px);
+	overflow-y: scroll;
+}
+page-datareport .search-list ion-item {
+	border-top: 1px solid #eee;
+	background: #f8f8f8;
+}
+page-datareport .search-list ion-item .item-inner {
+	border-bottom: 0!important;
+}
+page-datareport .search-list ion-label {
+	font-size: 14px;
+	color: #333;
+}
+page-datareport .search-list div {
+	font-size: 12px;
+	color: #999;
+}
+page-datareport .new-contract-data {
+	background: #111;
+}
+page-datareport .new-contract-data ion-col {
+	height: 30px;
+	line-height: 22px;
+}
+page-datareport .new-contract-data ion-col:first-child {
+	color: #999;
+	text-align: left;
+}
+page-datareport .new-contract-data ion-col:first-child span {
+	font-size: 14px!important;
+	padding: 2px 5px;
+	color: #fff;
+	border-radius: 3px;
+}
+page-datareport .new-contract-data span.red {
+	background: red;
+}
+page-datareport .new-contract-data span.green {
+	background: green;
+}
+page-datareport .new-contract-data ion-col:last-child {
+	color: #999;
+	text-align: right;
+	font-size: 12px;
+}
+page-datareport .confirm-con .masker {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.8;
+	left: 0;
+	top: 0;
+}
+page-datareport .confirm-con .content {
+	position: fixed;
+	width: 300px;
+	left: calc(50% - 150px);
+	top: 20%;
+	background: #252f39;
+	border-radius: 3px;
+	overflow: hidden;
+}
+page-datareport .sltp-title {
+	width: 100%;
+	background: #999;
+}
+page-datareport .sltp-title ion-icon {
+	padding: 10px;
+	font-size: 2.0rem;
+}
+page-datareport .confirm-con .content h3 {
+	margin: 0;
+	font-size: 1.6rem;
+	padding: 10px;
+}
+page-datareport .confirm-con .content .info {
+	padding: 10px;
+}
+page-datareport .confirm-con .content table {
+	width: 100%;
+}
+page-datareport .confirm-con .content td {
+	padding: 5px;
+	color: #999;
+	border: 1px solid #333;
+	background: #1d262d;
+}
+page-datareport .topic {
+	font-size: 1.2rem;
+	text-align: left;
+	background: #ffffcc;
+	padding: 10px;
+	color: #333;
+	height: 100px;
+	overflow: auto;
+}
+page-datareport .topic p {
+	margin: 0;
+	text-indent: 2em;
+	line-height: 1.5em;
+}
+page-datareport .confirm-con .content.sltp {
+	top: 10%;
+}
+page-datareport .content div button {
+	width: 40%;
+}
+page-datareport .content div button span {
+	width: auto!important;
+}
+page-datareport .card {
+	background-color: #fafafa;
+	margin: 5px 0 0 0;
+	width: 100%;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	.col {
+		color: #999;
+		text-align: left;
+		font-size: 12px;
+	}
+	span {
+		color: #333;
+	}
+}
+page-datareport .cannotContract {
+	.card-header {
+		text-align: left;
+		color: red;
+		padding: 16px 16px 0 16px;
+	}
+	.card-content {
+		overflow: hidden;
+		padding: 16px;
+		p {
+			text-align: left;
+			color: #999;
+			margin: 15px 0;
+		}
+	}
+}
+page-datareport {
+	.card-content {
+		padding: 0px;
+	}
+	.segment {
+		width: 100%;
+		height: 35px;
+		background-color: #fff;
+	}
+}
+page-datareport .no-data {
+	padding: 16px;
+	color: #999;
+}
+page-datareport .common-title a {
+	min-width: inherit!important;
+}
+page-datareport ion-footer {
+	overflow: hidden;
+	border-top: 1px solid #ddd;
+}
+page-datareport {
+	.scroll-content,
+	.toolbar-background,
+	ion-content,
+	ion-item,
+	ion-header::after {
+		background-image: none;
+		border: 0;
+	}
+	ion-header {
+		background: #488aff!important;
+	}
+}
+.alert-message {
+	text-align: left;
+}
+page-datareport .no-data {
+	width: 100%;
+	position: absolute;
+	top: 15px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+}
+page-datareport ion-card {
+	position: relative;
+	z-index: 1;
+}

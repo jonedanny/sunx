@@ -1,0 +1,198 @@
+page-myaccount .flex-between p {
+	width: 50%;
+	margin: 0;
+	padding: 10px 5px;
+	background: #1d262d;
+	color: #999;
+	border-bottom: 1px solid #666;
+	font-size: 1.3rem;
+	text-align: left;
+}
+page-myaccount .flex-between.search p:last-child {
+	text-align: right;
+}
+page-myaccount .input-wrapper {
+	border-bottom: 1px solid #eee;
+}
+page-myaccount ion-icon.fa {
+	width: 20px;
+	text-align: center;
+}
+page-myaccount ion-item ion-label {
+	color: #999;
+}
+page-myaccount ion-item div {
+	color: #333;
+}
+page-myaccount #information {
+	background: #fff;
+	.top {
+		position: relative;
+		.proflie {
+			position: sticky;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 65px;
+			padding-top: 5px;
+		}
+		ion-grid {
+			padding-bottom: 10px;
+			ion-col,a {
+				color: #fff!important;
+				font-size: 1.3rem;
+			}
+			ion-col {
+				padding: 5px 10px;
+			}
+		}
+		.btn-group {
+			overflow: hidden;
+			margin: 5px 0;
+			padding: 10px 0;
+			background-color: #f8f8f8;
+			border-top: 1px solid #eee;
+			border-bottom: 1px solid #eee;
+			a {
+				width: 25%;
+				float: left;
+				height: 60px;
+				font-size: 1.2rem;
+				ion-icon,span {
+					display: block;
+					margin: 0 auto;
+				}
+				ion-icon {
+					margin: 10px auto 5px auto;
+					color: #488aff;
+					width: auto;
+				}
+				span {
+					color: #333;
+				}
+			}
+		}
+	}
+}
+page-myaccount .currency-group {
+	background: #fff;
+	padding: 10px;
+}
+page-myaccount ion-select {
+	max-width: 100%;
+}
+page-myaccount ion-col {
+	font-size: 12px;
+	text-align: left;
+	color: #1e3342;
+	overflow: hidden;
+}
+page-myaccount ion-col button {
+	font-size: 12px;
+	width: 100%;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+page-myaccount ion-col button ion-icon {
+	width: 10px;
+}
+page-myaccount .top {
+	div {
+		padding: 0 10px;
+		background-color: #488aff;
+		ion-avatar {
+			width: 60px;
+			height: 60px;
+		}
+	}
+}
+page-myaccount .top .grid {
+	padding: 0px;
+}
+page-myaccount .left-info {
+	margin-right: 10px;
+	width: 90px;
+}
+page-myaccount img {
+	padding: 2px;
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 3px;
+}
+page-myaccount .account-qualifications {
+	padding-top: 0px;
+}
+page-myaccount .account-qualifications div {
+	background: transparent;
+	font-size: 10px;
+	float: left;
+	padding: 3px 7px;
+	margin-right: 5px;
+}
+page-myaccount div.ischecked {
+	color: #fff;
+	background: #ff6000;
+}
+page-myaccount .btn {
+	background: #e6eefb;
+	color: #1e3342;
+}
+page-myaccount .btn.btn-view-subaccount {
+	background: #488aff;
+	color: #fff;
+}
+page-myaccount .view-detail {
+	padding: 10px;
+	display: block;
+}
+page-myaccount .qualifications-button {
+    display: inline-block;
+    cursor: pointer;
+    opacity: 0.9;
+    font-size: 0.8rem;
+    color: #FFF;
+    letter-spacing: 1px;    
+    background: #666;
+}
+page-myaccount a.edit {
+	color: #488aff;
+	text-decoration: underline;
+}
+page-myaccount .m-t10 {
+	margin-top: 10px;
+}
+page-myaccount .list .item-block .item-inner {
+	border:none;
+}
+page-myaccount {
+	.language {
+		font-size: 12px;
+	}
+	.toolbar-content {
+		left: 5%;
+		right: 5%;
+	}
+	.scroll-content,
+	.toolbar-background,
+	ion-content,
+	ion-item,
+	ion-header::after {
+		background-image: none;
+		border: 0;
+	}
+	ion-header {
+		background: #488aff!important;
+	}
+	ion-buttons {
+		span {
+			color: #fff;
+		}
+	}
+	.toolbar-ios ion-title {
+		padding: 0!important;
+		height: 100%!important;
+		min-height: 100%!important;
+	}
+}

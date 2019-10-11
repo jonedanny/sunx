@@ -1,0 +1,178 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{'交易' | translate}}</ion-title>
+	</ion-navbar>
+	
+	<div class="common-title flex flex-center">
+		<a (tap)="tabMenu(1)" [ngClass]="{'active':selectTabs == 1}">{{'交易' | translate}}</a>
+		<a (tap)="tabMenu(2)" [ngClass]="{'active':selectTabs == 2}">{{'持仓' | translate}}</a>
+		<a (tap)="tabMenu(3)" [ngClass]="{'active':selectTabs == 3}">{{'挂单' | translate}}</a>
+		<a (tap)="tabMenu(4)" [ngClass]="{'active':selectTabs == 4}">{{'委托' | translate}}</a>
+		<a (tap)="tabMenu(5)" [ngClass]="{'active':selectTabs == 5}">{{'成交' | translate}}</a>
+	</div>
+</ion-header>
+<ion-content scroll="false">
+	<ion-refresher *ngIf="selectTabs != 1" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+		pullingIcon="arrow-dropdown"
+		pullingText="{{'下拉刷新' | translate}}"
+		refreshingSpinner="circles"
+		refreshingText="{{'正在刷新数据 ...' | translate}}">
+		</ion-refresher-content>
+	</ion-refresher>
+	<div *ngIf="selectTabs == 1" class="search-content">
+		<ion-grid class="search-input" *ngIf="userInfo.userState != -2">
+			<ion-row>
+				<ion-col col-2>{{'合约' | translate}}:</ion-col>
+				<ion-col col-9><input type="text" [(ngModel)]="filterText" (ngModelChange)="filterItems()" placeholder="{{'请输入合约代码/名称' | translate}}" /></ion-col>
+				<ion-col col-1><ion-icon class="clear-val" name="md-close" (tap)="clearSearch()"></ion-icon></ion-col>
+			</ion-row>
+		</ion-grid>
+		<div class="search-list" *ngIf="userInfo.userState != -2">
+			<ion-item *ngFor="let item of filterProductList" (tap)="positionContract(item.productId,item.productName,item.productCode)">
+				<ion-label>{{item.productName}}</ion-label>
+				<div item-content>{{item.productCode}}</div>
+			</ion-item>
+		</div>
+		<ion-card *ngIf="userInfo.userState == -2" class="cannotContract">
+			<ion-card-header>
+				<i class="fa fa-exclamation-circle"></i> {{'提示: 您还未获取交易权限' | translate}}
+			</ion-card-header>
+			<ion-card-content>
+				<p>{{'您还未开户,需在开户审核通过后才可以交易' | translate}}</p>
+				<p *ngIf="userInfo.userState == -2"><a (tap)="router('openAccount')">{{'需要 开户 请点击这里' | translate}} >></a></p>
+			</ion-card-content>
+		</ion-card>
+	</div>
+	<ion-list *ngIf="selectTabs == 2">
+		<div class="no-data">
+			<ion-icon name="information-circle"></ion-icon> {{'未查询到任何委托数据' | translate}}
+		</div>
+		<ion-card *ngFor="let item of publishPositionTotal" [hidden]="positionOrputUp != 'position' || item.content.length === 0">
+			<ion-card-content *ngFor="let detail of item.content" (tap)="pushValue(detail);presentActionSheet();">
+				<ion-grid>
+					<ion-row>
+						<ion-col col-12>
+							<b [ngClass]="{'red':detail[4] == 1,'green':detail[4] == -1}">{{detail[4] == 1?'B':'S'}}</b>
+							<span>{{detail[2]}} {{detail[3]}}</span>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'持仓量' | translate}}: <span class="c_yellow">{{detail[10]}}</span></ion-col>
+						<ion-col col-6>{{'计算价' | translate}}: <span class="c_yellow">{{detail[12] | number:'1.0-2'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'持仓均价' | translate}}: <span [ngClass]="{'c_red':detail[13] > 0,'c_green':detail[13] < 0}">{{detail[9]  | number:'1.0-4'}}</span></ion-col>
+						<!-- <ion-col col-6>{{'预计仓息' | translate}}: <span>{{detail[5]}}</span></ion-col> -->
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'保证金' | translate}}: <span>{{detail[6]}}</span></ion-col>
+						<ion-col col-6>{{'浮盈' | translate}}: <span [ngClass]="{'c_red':detail[13] > 0,'c_green':detail[13] < 0}">{{detail[13] | number:'1.0-2'}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<ion-list *ngIf="selectTabs == 3">
+		<div class="no-data">
+			<ion-icon name="information-circle"></ion-icon> {{'未查询到任何委托数据' | translate}}
+		</div>
+		<ion-card *ngFor="let item of untraderList" (tap)="removeUntraderInfo = item;removeUntraderActionSheet();">
+			<ion-card-content>
+				<ion-grid>
+					<ion-row>
+						<ion-col col-6>{{item.localOrderNo}}</ion-col>
+						<ion-col col-6 class="t-r">{{item.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-12>
+							<b [ngClass]="{'red':item.orderDirect == 1,'green':item.orderDirect == -1}">{{item.orderDirect == 1?'B':'S'}}</b>
+							<span>{{item.productName}} {{item.productCode}}</span>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'委托价格' | translate}}: <span>{{item.orderPrice | number:'1.2-2'}}</span></ion-col>
+						<ion-col col-6>{{'委托开平' | translate}}: <span>{{(orderOffsetText(item.offset)) | translate}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'委托数量' | translate}}: <span>{{item.orderVolume}}</span></ion-col>
+						<ion-col col-6>{{'委托状态' | translate}}: <span>{{(orderStateText(item.orderState)) | translate}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<ion-list *ngIf="selectTabs == 4">
+		<ion-card class="no-data" *ngIf="hasOrder">
+			<ion-card-content>
+				<i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp; {{'未查询到任何委托数据' | translate}}
+			</ion-card-content>
+		</ion-card>
+		<ion-card *ngFor="let item of orderList">
+			<ion-card-content>
+				<ion-grid>
+					<ion-row>
+						<ion-col col-6>{{item.localOrderNo}}</ion-col>
+						<ion-col col-6 class="t-r">{{item.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-12>
+							<b [ngClass]="{'red':item.orderDirect == 1,'green':item.orderDirect == -1}">{{item.orderDirect == 1?'B':'S'}}</b>
+							<span>{{item.productName | slice:0:10}} {{item.productCode}}</span>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'委托价' | translate}}: <span class="c_yellow">{{item.orderPrice | number:'1.2-2'}}</span></ion-col>
+						<ion-col col-6>{{'委托类型' | translate}}: <span>{{(item.priceCondition == 0 ? '限价':'市价') | translate}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'成交数量' | translate}}: <span>{{item.matchVolume}}</span></ion-col>
+						<ion-col col-6>{{'币种' | translate}}: <span>{{orderCurrencyText(item.commodityCurrency)}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'开平' | translate}}: <span>{{(orderOffsetText(item.offset)) | translate}}</span></ion-col>
+						<ion-col col-6>{{'状态' | translate}}: <span>{{(orderStateText(item.orderState)) | translate}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<ion-list *ngIf="selectTabs == 5">
+		<ion-card class="no-data" *ngIf="hasTrader">
+			<ion-card-content>
+				<i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp; {{'未查询到任何成交数据' | translate}}
+			</ion-card-content>
+		</ion-card>
+		<ion-card *ngFor="let item of traderList">
+			<ion-card-content>
+				<ion-grid>
+					<ion-row>
+						<ion-col col-6>{{item.localOrderNo}}</ion-col>
+						<ion-col col-6 class="t-r">{{item.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-12>
+							<b [ngClass]="{'red':item.orderDirect == 1,'green':item.orderDirect == -1}">{{item.orderDirect == 1?'B':'S'}}</b>
+							<span>{{item.productName | slice:0:10}} {{item.productCode}}</span>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'成交价' | translate}}: <span class="c_yellow">{{item.matchPrice | number:'1.2-2'}}</span></ion-col>
+						<ion-col col-6>{{'成交量' | translate}}: <span>{{item.matchVolume}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<ion-infinite-scroll *ngIf="selectTabs == 4 || selectTabs == 5" (ionInfinite)="appendData($event)" threshold="100px">
+		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'加载中...' | translate}}">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>
+<ion-footer id="capital">
+	<div class="capital"><capital></capital></div>
+</ion-footer>
+<app-alert></app-alert>

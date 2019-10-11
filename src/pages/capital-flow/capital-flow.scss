@@ -1,0 +1,58 @@
+page-capital-flow .title.flex {
+	height: 25px;
+	line-height: 25px;
+	width: 100%;
+	color: #333;
+	background: #f8f8f8;
+}
+page-capital-flow .title.flex span {
+	padding: 0 5px;
+	display: inline-block;
+	text-align: left;
+}
+page-capital-flow .data-list {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+page-capital-flow .data-list p {
+	margin: 0;
+	color: #999;
+	padding: 5px;
+	font-size: 1.0rem;
+	text-align: left;
+}
+page-capital-flow .data-list div {
+	width: 100%;
+	overflow: hidden;
+}
+page-capital-flow .data-list span {
+	float: left;
+	color: #333;
+	padding: 5px;
+	overflow: hidden;
+	text-align: left;
+}
+page-capital-flow .data-list span:nth-child(1n),page-capital-flow .title.flex span:nth-child(1n){
+	width: 18%;
+}
+page-capital-flow .data-list span:nth-child(2n),page-capital-flow .title.flex span:nth-child(2n){
+	width: 15%;
+}
+page-capital-flow .data-list span:nth-child(3n),page-capital-flow .title.flex span:nth-child(3n){
+	width: 25%;
+}
+page-capital-flow .data-list span:nth-child(4n),page-capital-flow .title.flex span:nth-child(4n){
+	width: 22%;
+}
+page-capital-flow .data-list span:nth-child(5n),page-capital-flow .title.flex span:nth-child(5n){
+	width: 20%;
+}
+page-capital-flow .bg-red {
+	background: #fef5f5;
+}
+page-capital-flow .bg-green {
+	background: #f4fff5;
+}
+page-capital-flow ion-header thead span {
+	font-size: 12px;
+}

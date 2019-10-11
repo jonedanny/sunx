@@ -1,0 +1,43 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'币种组明细' | translate}}</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list>
+		<ion-card *ngFor="let item of currencyList">
+			<ion-card-content [ngClass]="{'c_dred':item.floatProfit > 0,'c_dgreen':item.floatProfit < 0}">
+				<ion-grid>
+					<ion-row>
+						<ion-col col-6>
+							{{'币种' | translate}}: <span>{{changeCurrencyText(item.currency)}}</span>
+						</ion-col>
+						<ion-col col-6>{{'盈亏' | translate}}: <span [ngClass]="{'c_red':item.floatProfit > 0,'c_green':item.floatProfit < 0}">{{item.floatProfit | number:'1.2-2'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'正出' | translate}}: <span class="c_yellow">{{item.outing | number:'1.2-2'}}</span></ion-col>
+						<ion-col col-6>{{'正入' | translate}}: <span class="c_yellow">{{item.ining | number:'1.2-2'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'保证金' | translate}}: <span>{{item.deposit | number:'1.2-2'}}</span></ion-col>
+						<ion-col col-6>{{'冻结' | translate}}: <span>{{item.freeze | number:'1.2-2'}}</span></ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6>{{'出金阀值' | translate}}: <span>{{item.threshold | number:'1.2-2'}}</span></ion-col>
+						<ion-col col-6>{{'余额' | translate}}: <span>{{item.remain | number:'1.2-2'}}</span></ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card>
+		<ion-card class="no-data" *ngIf="hasData">
+			<ion-card-content>
+				<i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp; {{'未获取到币种明细' | translate}}
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+</ion-content>
