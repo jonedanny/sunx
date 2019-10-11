@@ -1,0 +1,12 @@
+<p class="maincharts-info" [ngClass]="{'left':infoPosition=='left','right':infoPosition=='right'}" *ngIf="info">
+	<span>{{'时间' | translate}}: {{hoverInfo.date}}</span>
+	<span *ngIf="commodityType != 4">{{'价格' | translate}}: <a [ngClass]="{'c_red':hoverInfo.value > 0,'c_green':hoverInfo.value < 0}">{{hoverInfo.price | number:'1.2-6'}}</a></span>
+	<span *ngIf="commodityType != 4">{{'均价' | translate}}: <a class="c_yellow">{{hoverInfo.priceAVG | number:'1.2-4'}}</a></span>
+	<span *ngIf="commodityType != 4">{{'涨跌' | translate}}: <a [ngClass]="{'c_red':hoverInfo.value > 0,'c_green':hoverInfo.value < 0}">{{hoverInfo.value | number:'1.2-6'}}</a></span>
+	<span *ngIf="commodityType != 4">{{'涨跌幅' | translate}}: <a [ngClass]="{'c_red':hoverInfo.value > 0,'c_green':hoverInfo.value < 0}">{{hoverInfo.rate | number:'1.2-4'}}%</a></span>
+
+	<span *ngIf="commodityType == 4">{{'买' | translate}}: <a class="c_red">{{hoverInfo.buy | number:'1.2-6'}}</a></span>
+	<span *ngIf="commodityType == 4">{{'卖' | translate}}: <a class="c_green">{{hoverInfo.sell | number:'1.2-6'}}</a></span>
+</p>
+<div id="line-ma"></div>
+<div id="sub-line-text" class="subcharts-info"></div>

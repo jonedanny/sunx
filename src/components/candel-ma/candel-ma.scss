@@ -1,0 +1,36 @@
+candel-ma {
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: relative;
+	zoom: 1;
+}
+candel-ma div {
+	width: 100%;
+	height: calc(100% - 20px);
+	overflow: hidden;
+}
+candel-ma #main-candel-text {
+	font-size: 10px;
+	position: absolute;
+	left: 0;
+	top: 2px;
+	width: 100%;
+	height: auto!important;
+	text-align: left;
+}
+candel-ma #main-candel-text span {
+	padding: 2px 0 0 5px;
+}
+candel-ma #sub-candel-text {
+	font-size: 10px;
+	position: absolute;
+	left: 0;
+	top: 70%;
+	width: 100%;
+	height: auto!important;
+	text-align: left;
+}
+candel-ma #sub-candel-text span {
+	padding: 2px 0 0 5px;
+}

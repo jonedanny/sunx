@@ -1,0 +1,106 @@
+{
+	"sunx_app_181": {
+		"version": 1,
+		"orgcode": ["1@"],
+		"line": [{
+			"id": 0,
+			"webUrl": "http://192.168.1.181:8080/trade/",
+			"socketUrl": "http://192.168.1.181:9092",
+			"lineName": "181环境"
+		}],
+		"logo": "sunx.png",
+		"viewRealInfoUrl": "realNameInfo/index.html",
+		"registerUrl":"register/index.html",
+		"contactChannel": {
+			"email": true,
+			"phone": true
+		},
+		"website": ""
+	},
+	"sunx_app_test": {
+		"version": 1,
+		"orgcode": ["1@"],
+		"line": [{
+			"id": 0,
+			"webUrl": "http://47.101.35.248:33207/trade/",
+			"socketUrl": "http://47.101.35.248:33202",
+			"lineName": "test环境"
+		}],
+		"logo": "sunx.png",
+		"viewRealInfoUrl": "realNameInfo/index.html",
+		"registerUrl":"register/index.html",
+		"contactChannel": {
+			"email": true,
+			"phone": true
+		},
+		"website": ""
+	},
+	"sunx_app_product": {
+		"version": 1,
+		"orgcode": ["1@"],
+		"line": [{
+			"id": 0,
+			"webUrl": "http://sunx.hnrotor.cn:33601/trade/",
+			"socketUrl": "http://sunx.hnrotor.cn:33602",
+			"lineName": "生产环境"
+		}],
+		"logo": "sunx.png",
+		"viewRealInfoUrl": "realNameInfo/index.html",
+		"registerUrl":"register/index.html",
+		"contactChannel": {
+			"email": true,
+			"phone": true
+		},
+		"website": ""
+	},
+	"sunx_app_huidu": {
+		"version": 1,
+		"orgcode": ["1@"],
+		"line": [{
+			"id": 0,
+			"webUrl": "http://47.110.91.198:33707/trade/",
+			"socketUrl": "http://47.110.91.198:33702",
+			"lineName": "灰度环境"
+		}],
+		"logo": "sunx.png",
+		"viewRealInfoUrl": "realNameInfo/index.html",
+		"registerUrl":"register/index.html",
+		"contactChannel": {
+			"email": true,
+			"phone": true
+		},
+		"website": ""
+	},
+	"yzcf_app": {
+		"version": 1,
+		"orgcode": ["1@"],
+		"line": [
+			{
+				"id": 0,
+				"webUrl": "http://47.112.134.177:33807/trade/",
+				"socketUrl": "http://47.112.134.177:33802",
+				"lineName": "易致财富 1"
+			},
+			{
+				"id": 1,
+				"webUrl": "http://39.96.67.38:33807/trade/",
+				"socketUrl": "http://39.96.67.38:33802",
+				"lineName": "易致财富 2"
+			},
+			{
+				"id": 2,
+				"webUrl": "http://kjgj.ancestree.cn:33807/trade/",
+				"socketUrl": "http://kjgj.ancestree.cn:33802",
+				"lineName": "易致财富 3"
+			}
+		],
+		"logo": "sunx.png",
+		"viewRealInfoUrl": "realNameInfo/index.html",
+		"registerUrl":"register/index.html",
+		"contactChannel": {
+			"email": true,
+			"phone": true
+		},
+		"website": ""
+	}
+}

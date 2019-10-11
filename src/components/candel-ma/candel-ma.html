@@ -1,0 +1,11 @@
+<p class="maincharts-info t20" [ngClass]="{'left':infoPosition=='left','right':infoPosition=='right'}" *ngIf="info">
+	<span class="c_grey">{{hoverInfo.date}}</span>
+	<span>{{'开盘' | translate}}: {{hoverInfo.candeldata[1] | number:'1.2-3'}}</span>
+	<span>{{'收盘' | translate}}: {{hoverInfo.candeldata[2] | number:'1.2-3'}}</span>
+	<span>{{'最低' | translate}}: <a class="c_green">{{hoverInfo.candeldata[3] | number:'1.2-3'}}</a></span>
+	<span>{{'最高' | translate}}: <a class="c_red">{{hoverInfo.candeldata[4] | number:'1.2-3'}}</a></span>
+</p>
+<p class="subcharts-info"></p>
+<div id="candel-ma"></div>
+<div id="main-candel-text"></div>
+<div id="sub-candel-text"></div>

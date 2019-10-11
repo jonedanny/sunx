@@ -1,0 +1,5 @@
+<div class="capital-common flex flex-between">
+	<span>{{'净值' | translate}}: {{persionInfo.netWorth | number:'1.0-3'}}</span>
+	<span>{{'盈亏' | translate}}: <a [ngClass]="{'c_red':persionInfo.floatProfit > 0,'c_green':persionInfo.floatProfit < 0}">{{persionInfo.floatProfit | number:'1.0-3'}}</a></span>
+	<span>{{'风险率' | translate}}: {{persionInfo.riskRate}}</span>
+</div>
