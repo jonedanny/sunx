@@ -1,0 +1,8 @@
+{
+  "name": "clientphone4.0",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "c174251f"
+}
