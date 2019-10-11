@@ -1,0 +1,11 @@
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" (pinch)="fullScreenBroswer()"></ion-nav>
+<div class="disconnect" *ngIf="disconnect">
+	<p>与服务器的链接断开</p>
+	<p><button class="button" (tap)="restart()">确定</button></p>
+</div>
+<div id="code-update" class="flex flex-between" *ngIf="hotCodePushLoading">
+	<div class="progress">
+		<i class="fa fa-spinner fa-pulse fa-lg"></i>
+	</div>
+	<span class="text">正在下载更新资源包...<br />下载完成后将自动重启APP,请稍候...</span>
+</div>

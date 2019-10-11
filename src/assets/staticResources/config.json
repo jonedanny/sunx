@@ -1,0 +1,53 @@
+{
+	"sunx_app": {
+		"version": 12,
+		"orgcode": ["1@-59@"],
+		"line": [{
+			"id": 0,
+			"webUrl": "http://192.168.1.74:8081/riskcontrol/",
+			"socketUrl": "http://192.168.1.74:9097",
+			"lineName": "线下稳定版"
+		}],
+		"logo": "sunx.png",
+		"openAccountAgreementName": "开户",
+		"openAccountAgreementOption":[
+			{
+				"name":"国内交易账户",
+				"url":"sunx.html",
+				"type": 0,
+				"used":true
+			},
+			{
+				"name":"中阳证券交易账户",
+				"url":"http://trade01.jdanfx.com:55105/test_config_daijun/HkMaterialV/futuresTrading.html",
+				"reviewUrl":"",
+				"type": 1,
+				"used":false
+			},
+			{
+				"name":"国外交易账户",
+				"url":"",
+				"reviewUrl":"",
+				"type": 2,
+				"used":false
+			}
+		],
+		"service": {
+			"realName": true,
+			"openAccount": true,
+			"sign": true,
+			"resign": true,
+			"recharge": true,
+			"withdrawsMoney": true,
+			"webRecharge": false,
+			"webRechargeUrl": "",
+			"handlerCertificateImg": true,
+			"canRegister":true
+		},
+		"contactChannel": {
+			"email": true,
+			"phone": true
+		},
+		"website": ""
+	}
+}
